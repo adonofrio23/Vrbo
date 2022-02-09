@@ -1,4 +1,4 @@
-package vrboDemo;
+package vrboHome;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
