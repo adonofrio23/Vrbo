@@ -38,7 +38,7 @@ public class vrboHome extends JFrame{
 			
 			//title 
 			
-			String titleString = "VRBO Home Page " + str; 				    
+			String titleString = "VRBOHome Page " + str; 				    
 			setTitle(titleString);
 			
 			
