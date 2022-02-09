@@ -23,7 +23,7 @@ public class vrboHome extends JFrame{
 	
 	 private static final long serialVersionUID = 1L;
 	 
-	 public static void main() {
+	 public static void main(String[] args){
 		 vrboHome frame = new vrboHome();
 		 frame.setVisible(true);
 	 }
@@ -38,7 +38,7 @@ public class vrboHome extends JFrame{
 			
 			//title 
 			
-			String titleString = "VRBOHome Page " + str; 				    
+			String titleString = "VRBO Home Page " + str; 				    
 			setTitle(titleString);
 			
 			
