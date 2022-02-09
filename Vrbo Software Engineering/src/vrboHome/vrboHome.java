@@ -1,4 +1,4 @@
-package vrboDemo;
+package vrboHome;
 
 public class vrboHome {
 
