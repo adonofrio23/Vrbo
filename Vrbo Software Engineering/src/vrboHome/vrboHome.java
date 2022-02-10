@@ -49,10 +49,21 @@ public class vrboHome extends JFrame{
 			
 			// size of the frame
 			//
-			setSize(970,670);
+			setSize(1170,970);
+			
+			//
+			// panel title
+			//
+			JPanel contentPane = new JPanel();
+			contentPane.setBorder(new TitledBorder(new EtchedBorder(), 
+					              "Insert VRBO logo here"));;
+			setContentPane(contentPane);
+				
+			//
+			// label for popular listings
+			//
+			JLabel popListingLabel = new JLabel("Popular Listings");
+			popListingLabel.setBounds(650, 20, 150, 23);
+			contentPane.add(popListingLabel);	
 	 }
-	 
-
-	 
-	
 }
