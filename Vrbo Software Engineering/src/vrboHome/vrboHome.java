@@ -49,7 +49,7 @@ public class vrboHome extends JFrame{
 			
 			// size of the frame
 			//
-			setSize(970,670);
+			setSize(2000,2000);
 			
 	 }
 	 
