@@ -61,15 +61,17 @@ public class vrboHome extends JFrame{
 
 			//branch 'main' of https://github.com/adonofrio23/Vrbo.git
 			
-			//
-			// panel title
-			
-			//Travis - Header with Login, Sign up, and List your Property Buttons
-			
+			// Content Pane
 			JPanel contentPane = new JPanel();
-			contentPane.setBorder(new TitledBorder(new EtchedBorder(), 
-					              "Insert VRBO logo here"));;
+			contentPane.setBorder(new EtchedBorder());
 			setContentPane(contentPane);
+			
+			//Travis - Header with Login, Sign up, List your Property, and Exit Buttons
+			JButton exitButton = new JButton("Exit");
+			exitButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			exitButton.setBounds(1070, 15, 80, 80);
+			exitButton.addActionListener(new ExitListener());
+			contentPane.add(exitButton);
 				
 			
 			//Juliette - Search bar
@@ -100,7 +102,7 @@ public class vrboHome extends JFrame{
 	        catch (IOException e) {
 	        }
 
-	// Use a label to display the image
+	        // Use a label to display the image
 	        JLabel tampaImage = new JLabel("Tampa");
 	        tampaImage.setIcon(new ImageIcon(tampa));
 	        tampaImage.setBounds(50, 500, 300, 225);
@@ -124,7 +126,7 @@ public class vrboHome extends JFrame{
 	        catch (IOException e) {
 	        }
 
-	// Use a label to display the image
+	        // Use a label to display the image
 	        JLabel denverImage = new JLabel("Denver");
 	        denverImage.setIcon(new ImageIcon(denver));
 	        denverImage.setBounds(425, 500, 300, 225);
@@ -148,7 +150,7 @@ public class vrboHome extends JFrame{
 	        catch (IOException e) {
 	        }
 
-	// Use a label to display the image
+	        // Use a label to display the image
 	        JLabel sanDImage = new JLabel("San Diego");
 	        sanDImage.setIcon(new ImageIcon(sanD));
 	        sanDImage.setBounds(800, 500, 300, 225);
@@ -175,7 +177,22 @@ public class vrboHome extends JFrame{
 			this.setLocationRelativeTo(null);
 		}
 		
-		
+	 	private class ExitListener implements ActionListener {
+	 		@Override public void actionPerformed(ActionEvent e) {
+	 			int res = JOptionPane.showConfirmDialog(
+	 					null, 
+	 					"Do you really want to exit VRBO Client?", 
+	 					"VRBO Client", 
+	 					JOptionPane.INFORMATION_MESSAGE
+	 			);
+	 			
+	 			if (res == JOptionPane.OK_OPTION) {
+	 				dispose();
+	 				System.exit(0);
+	 			}
+	 		}
+	 	}
+	 
 	    //
 	    // Thread to update TITLE BAR, date, and time     
 	    //     
