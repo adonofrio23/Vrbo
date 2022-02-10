@@ -67,12 +67,16 @@ public class vrboHome extends JFrame{
 			setContentPane(contentPane);
 			
 			//Travis - Header with Login, Sign up, List your Property, and Exit Buttons
-			JButton exitButton = new JButton("Exit");
-			exitButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			exitButton.setBounds(1070, 15, 80, 80);
-			exitButton.addActionListener(new ExitListener());
+			JButton exitButton = createButton("Exit", 1070, 15, 80, 80);
+			exitButton.addActionListener(new ExitListener()); // Pop-Up Window Functionality
+			JButton listingButton = createButton("List Your Property", 870, 15, 150, 80);
+			JButton signUpButton = createButton("Sign Up", 700, 15, 120, 80);
+			JButton logInButton = createButton("Log In", 530, 15, 120, 80);
+			
 			contentPane.add(exitButton);
-				
+			contentPane.add(listingButton);
+			contentPane.add(signUpButton);
+			contentPane.add(logInButton);
 			
 			//Juliette - Search bar
 			
@@ -181,9 +185,9 @@ public class vrboHome extends JFrame{
 	 		@Override public void actionPerformed(ActionEvent e) {
 	 			int res = JOptionPane.showConfirmDialog(
 	 					null, 
-	 					"Do you really want to exit VRBO Client?", 
-	 					"VRBO Client", 
-	 					JOptionPane.INFORMATION_MESSAGE
+	 					"Do you really want to exit VRBO Client?", // Exit message
+	 					"VRBO Client",  // Pop-Up Window title
+	 					JOptionPane.INFORMATION_MESSAGE // Options
 	 			);
 	 			
 	 			if (res == JOptionPane.OK_OPTION) {
@@ -193,6 +197,13 @@ public class vrboHome extends JFrame{
 	 		}
 	 	}
 	 
+	 	private JButton createButton(String tag, int x, int y, int width, int height) {
+	 		JButton btn = new JButton(tag);
+			btn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			btn.setBounds(x, y, width, height);
+			return btn;
+	 	}
+	 	
 	    //
 	    // Thread to update TITLE BAR, date, and time     
 	    //     
