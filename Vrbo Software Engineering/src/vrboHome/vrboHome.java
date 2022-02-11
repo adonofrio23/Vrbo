@@ -124,7 +124,13 @@ public class vrboHome extends JFrame{
 			chooseCheckIn.setBounds(400, 120, 250, 200);
 			chooseCheckIn.setForeground(Color.WHITE);
 			contentPane.add(chooseCheckIn);
-				
+			
+			//check in text box
+			
+			JTextField checkInDate = new JTextField();
+			checkInDate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			checkInDate.setBounds(400, 230, 100, 30);
+			contentPane.add(checkInDate);
 			
 			//Choose date of check out 
 			//Label for "Check Out"
@@ -135,12 +141,29 @@ public class vrboHome extends JFrame{
 			chooseCheckOut.setForeground(Color.WHITE);
 			contentPane.add(chooseCheckOut);
 			
+			//check out text box
+			
+			JTextField checkOutDate = new JTextField();
+			checkOutDate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			checkOutDate.setBounds(550, 230, 100, 30);
+			contentPane.add(checkOutDate);
+			
+			
+			//number of guests label 
+			
 			JLabel numberOfGuests = new JLabel("Number of Guests");
 			numberOfGuests.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			numberOfGuests.setForeground(Color.WHITE);
 			numberOfGuests.setBounds(700, 120, 250, 200);
 			contentPane.add(numberOfGuests);
 						
+			
+			//number of guests text box
+			
+			JTextField guestNumber = new JTextField();
+			guestNumber.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			guestNumber.setBounds(700, 230, 100, 30);
+			contentPane.add(guestNumber);
 			
 			// done - Search button 
 			
