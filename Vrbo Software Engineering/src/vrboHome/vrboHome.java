@@ -1,11 +1,10 @@
 package vrboHome;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
@@ -26,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import javax.swing.JPanel;
 
 public class vrboHome extends JFrame{
 	
@@ -56,11 +56,11 @@ public class vrboHome extends JFrame{
 			
 			
 			// size of the frame
-			//<<<<<<< HEAD
+			
 			setSize(2000,2000);
 			setSize(1170,970);
 
-			//branch 'main' of https://github.com/adonofrio23/Vrbo.git
+			
 			
 			// Content Pane
 			JPanel contentPane = new JPanel();
@@ -68,38 +68,47 @@ public class vrboHome extends JFrame{
 			setContentPane(contentPane);
 			
 			//Travis - Header with Login, Sign up, List your Property, and Exit Buttons
-			JButton exitButton = createButton("Exit", 16, 1070, 15, 80, 80);
-			exitButton.addActionListener(new ExitListener()); // Pop-Up Window Functionality
-			JButton listingButton = createButton("List Your Property", 16, 870, 15, 150, 80);
-			JButton signUpButton = createButton("Sign Up", 16, 700, 15, 120, 80);
-			JButton logInButton = createButton("Log In", 16, 530, 15, 120, 80);
-			
+			JButton exitButton = new JButton("Exit");
+			exitButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			exitButton.setBounds(1070, 15, 80, 80);
+			exitButton.addActionListener(new ExitListener());
 			contentPane.add(exitButton);
-			contentPane.add(listingButton);
-			contentPane.add(signUpButton);
-			contentPane.add(logInButton);
-			
-			JLabel slogan = createLabel("  Travel Better Together", 20, 250, 15, 230, 80);
-			slogan.setBorder(BorderFactory.createLineBorder(Color.black));
-			
-			contentPane.add(slogan);
-			
-			JLabel logo = new JLabel();
-			Image vrboLogo = fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
-			logo.setIcon(new ImageIcon(vrboLogo));
-			logo.setBounds(50, 15, 150, 80);
-			
-			contentPane.add(logo);
+				
 			
 			//Juliette - Search bar
 			
-		
+			// TES
+
+			//Search Location in drop down 
+			//Label for "Where"
+			JLabel chooseOption = new JLabel("Where");
+			chooseOption.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			chooseOption.setBounds(697, 424, 100, 23);
+			contentPane.add(chooseOption); 
+			
+			
+			//dropdown
+			
+			String[] options = {"New York City, NY", "Tampa Bay, FL", "Denver, CO", "Los Angeles, CA"};
+			//JPanel dropdownSearch = new JPanel(); 
+			JComboBox<String> search = new JComboBox<>(options);
+			search.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			search.setBounds(150, 150, 250, 200);
+			
+			
+			JButton pressSearch = new JButton("Search");
+			search.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	        pressSearch.setBounds(150, 150, 80, 50);
+			
+			contentPane.add(pressSearch);
+			contentPane.add(search);
+			
+			contentPane.setVisible(true);
 			
 			
 			
-			
-			
-			
+	        
+	
 			//Anthony - Popular Listings
 			//
 			// label for popular listings
@@ -198,9 +207,9 @@ public class vrboHome extends JFrame{
 	 		@Override public void actionPerformed(ActionEvent e) {
 	 			int res = JOptionPane.showConfirmDialog(
 	 					null, 
-	 					"Do you really want to exit VRBO Client?", // Exit message
-	 					"VRBO Client",  // Pop-Up Window title
-	 					JOptionPane.INFORMATION_MESSAGE // Options
+	 					"Do you really want to exit VRBO Client?", 
+	 					"VRBO Client", 
+	 					JOptionPane.INFORMATION_MESSAGE
 	 			);
 	 			
 	 			if (res == JOptionPane.OK_OPTION) {
@@ -210,32 +219,6 @@ public class vrboHome extends JFrame{
 	 		}
 	 	}
 	 
-	 	private JButton createButton(String tag, int fontSize, int x, int y, int width, int height) {
-	 		JButton btn = new JButton(tag);
-			btn.setFont(new Font("Tahoma", Font.PLAIN, fontSize));
-			btn.setBounds(x, y, width, height);
-			return btn;
-	 	}
-	 	
-	 	private JLabel createLabel(String tag, int fontSize, int x, int y, int width, int height) {
-	 		JLabel label = new JLabel(tag);
-	 		label.setFont(new Font("Tahoma", Font.PLAIN, fontSize));
-	 		label.setBounds(x, y, width, height);
-	 		return label;
-	 	}
-	 	
-	 	private Image fetchImage(String url, int width, int height) {
-	 		Image image = null;
-	 		try {
-	 			URL u = new URL(url);
-	 			BufferedImage img = ImageIO.read(u);
-	 			image = img.getScaledInstance(width, height, Image.SCALE_DEFAULT);
-	 		} catch (Exception e) {
-	 
-	 		}
-	 		return image;
-	 	}
-	 	
 	    //
 	    // Thread to update TITLE BAR, date, and time     
 	    //     
