@@ -1,4 +1,3 @@
-
 package vrboHome;
 
 import javax.swing.JFrame;
@@ -17,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -34,6 +34,7 @@ public class vrboHome extends JFrame{
 	 
 	 public static void main(String[] args){
 		 vrboHome frame = new vrboHome();
+		 frame.setBackground(Color.WHITE);
 		 frame.setVisible(true);
 	 }
 	 
@@ -57,11 +58,11 @@ public class vrboHome extends JFrame{
 			
 			
 			// size of the frame
-			//<<<<<<< HEAD
+	
 			setSize(2000,2000);
 			setSize(1170,970);
 
-			//branch 'main' of https://github.com/adonofrio23/Vrbo.git
+			
 			
 			// Content Pane
 			JPanel contentPane = new JPanel();
@@ -92,15 +93,17 @@ public class vrboHome extends JFrame{
 			
 			contentPane.add(logo);
 			
+		
 			//Juliette - Search bar
+		
 			
-			// TEST
-
+			
 			//Search Location in drop down 
 			//Label for "Where"
 			JLabel chooseOption = new JLabel("Where");
-			chooseOption.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			chooseOption.setBounds(697, 424, 100, 23);
+			chooseOption.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			chooseOption.setBounds(150, 120, 250, 200);
+			chooseOption.setForeground(Color.WHITE);
 			contentPane.add(chooseOption); 
 			
 			
@@ -109,22 +112,65 @@ public class vrboHome extends JFrame{
 			String[] options = {"New York City, NY", "Tampa Bay, FL", "Denver, CO", "Los Angeles, CA"};
 			//JPanel dropdownSearch = new JPanel(); 
 			JComboBox<String> search = new JComboBox<>(options);
-			search.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			search.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			search.setBounds(150, 150, 250, 200);
 			
 			
+			//Choose date of check in 
+			//Label for "Check In"
+			
+			JLabel chooseCheckIn = new JLabel("Check In");
+			chooseCheckIn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			chooseCheckIn.setBounds(400, 120, 250, 200);
+			chooseCheckIn.setForeground(Color.WHITE);
+			contentPane.add(chooseCheckIn);
+				
+			
+			//Choose date of check out 
+			//Label for "Check Out"
+			
+			JLabel chooseCheckOut = new JLabel("Check Out");
+			chooseCheckOut.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			chooseCheckOut.setBounds(550, 120, 250, 200);
+			chooseCheckOut.setForeground(Color.WHITE);
+			contentPane.add(chooseCheckOut);
+			
+			JLabel numberOfGuests = new JLabel("Number of Guests");
+			numberOfGuests.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			numberOfGuests.setForeground(Color.WHITE);
+			numberOfGuests.setBounds(700, 120, 250, 200);
+			contentPane.add(numberOfGuests);
+						
+			
+			// done - Search button 
+			
 			JButton pressSearch = new JButton("Search");
 			search.setFont(new Font("Tahoma", Font.PLAIN, 20));
-	        pressSearch.setBounds(150, 150, 80, 50);
-			
-			contentPane.add(pressSearch);
+	        pressSearch.setBounds(950, 200, 80, 50);
+		
+	        
+	        contentPane.add(pressSearch);
 			contentPane.add(search);
+			
 			
 			contentPane.setVisible(true);
 			
 			
+			//image behind search bar 
 			
+			Image background = null;
+	        try {
+	            URL url = new URL("https://images.unsplash.com/photo-1570304816841-906a17d7b067?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2064&q=80");
+	            BufferedImage bufferedImage = ImageIO.read(url);
+	            background = bufferedImage.getScaledInstance(1000, 300, Image.SCALE_DEFAULT);
+	        } 
+	        catch (IOException e) {
+	        }
 			
+	        JLabel backgroundImage = new JLabel();
+	        backgroundImage.setIcon(new ImageIcon(background));
+	        backgroundImage.setBounds(100, 100, 1000, 400);
+			contentPane.add(backgroundImage);
 			
 			
 			
@@ -311,11 +357,6 @@ public class vrboHome extends JFrame{
 	      refreshAllTitleBar.start();
 	 }
 }
-
-
-
-
-
 
 
 
