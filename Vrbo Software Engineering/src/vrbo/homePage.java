@@ -104,28 +104,40 @@ public class homePage extends Window {
 		JLabel tampa = new JLabel("Tampa");
 		Image tampaImage = fetchImage("https://images.unsplash.com/photo-1506126279646-a697353d3166?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", 300, 225);
 		tampa.setIcon(new ImageIcon(tampaImage));
-		tampa.setBounds(50, 500, 300, 225);
+		tampa.setBounds(50, 485, 300, 225);
 		
 		JLabel denver = new JLabel("Denver");
 		Image denverImage = fetchImage("https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", 300, 225);
 		denver.setIcon(new ImageIcon(denverImage));
-		denver.setBounds(425, 500, 300, 225);
+		denver.setBounds(425, 485, 300, 225);
 		
 		JLabel sanDiego = new JLabel("San Diego");
 		Image sanDiegoImage = fetchImage("https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fGx1eHVyeSUyMGFwYXJ0bWVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60", 300, 225);
 		sanDiego.setIcon(new ImageIcon(sanDiegoImage));
-		sanDiego.setBounds(800, 500, 300, 225);
+		sanDiego.setBounds(800, 485, 300, 225);
 		
-		JLabel tampaLabel = createLabel("Tampa Bay, FL 4 Bed, 3.5 Bath $499/night", 14, 50, 700, 300, 100);
-		JLabel denverLabel = createLabel("Denver, Colorado 7 Bed, 8.5 Bath $999/night", 14, 425, 700, 300, 100);
-		JLabel sanDiegoLabel = createLabel("San Diego, CA 3 Bed, 2.5 Bath $350/night", 14, 800, 700, 300, 100);
+		JLabel tampaLocationLabel = createLabel("Tampa Bay, FL", 16, 150, 680, 300, 100);
+		JLabel tampaBedBathLabel = createLabel("4 Bed, 3.5 Bath", 14, 155, 700, 300, 100);
+		JLabel tampaPriceLabel = createLabel("$499/night", 14, 165, 720, 300, 100);
+		JLabel denverLocationLabel = createLabel("Denver, Colorado", 16, 515, 680, 300, 100);
+		JLabel denverBedBathLabel = createLabel("7 Bed, 8.5 Bath", 14, 530, 700, 300, 100);
+		JLabel denverPriceLabel = createLabel("$999/night", 14, 540, 720, 300, 100);
+		JLabel sanDiegoLocationLabel = createLabel("San Diego, CA", 16, 900, 680, 300, 100);
+		JLabel sanDiegoBedBathLabel = createLabel("3 Bed, 2.5 Bath", 14, 904, 700, 300, 100);
+		JLabel sanDiegoPriceLabel = createLabel("$350/night", 14, 917, 720, 300, 100);
 		
 		window.add(popListingLabel);
 		window.add(tampa);
 		window.add(denver);
 		window.add(sanDiego);
-		window.add(tampaLabel);
-		window.add(denverLabel);
-		window.add(sanDiegoLabel);
+		window.add(tampaLocationLabel);
+		window.add(tampaBedBathLabel);
+		window.add(tampaPriceLabel);
+		window.add(denverLocationLabel);
+		window.add(denverBedBathLabel);
+		window.add(denverPriceLabel);
+		window.add(sanDiegoLocationLabel);
+		window.add(sanDiegoBedBathLabel);
+		window.add(sanDiegoPriceLabel);
 	}
 }
