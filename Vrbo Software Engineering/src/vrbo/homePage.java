@@ -3,6 +3,8 @@ package vrbo;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -33,6 +35,12 @@ public class homePage extends Window {
 		JButton listingButton = createButton("List Your Property", 16, 870, 15, 150, 80);
 		JButton signUpButton = createButton("Sign Up", 16, 700, 15, 120, 80);
 		JButton logInButton = createButton("Log In", 16, 530, 15, 120, 80);
+		
+		logInButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new testPage(1000, 1000, "Test Page - ");
+			}
+		});
 		
 		window.add(exitButton);
 		window.add(listingButton);
