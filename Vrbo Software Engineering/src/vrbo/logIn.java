@@ -3,8 +3,6 @@ package vrbo;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -13,10 +11,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class testPage extends Window {
+public class logIn extends Window {
 	public static final long serialVersionUID = 10L;
 	
-	testPage(int width, int height, String name) {
+	logIn(int width, int height, String name) {
 		super.width = width;
 		super.height = height;
 		super.name = name;

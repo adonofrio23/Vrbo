@@ -23,6 +23,7 @@ public class homePage extends Window {
 		createHeaderBar();
 		addComponents();
 		createWindow();
+		createClock(); // Have our title bar be the clock that updates
 	}
 	
 	protected void createHeaderBar() {
@@ -38,7 +39,7 @@ public class homePage extends Window {
 		
 		logInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new testPage(1000, 1000, "Test Page - ");
+				new logIn(1170, 970, "VRBO Log In - ");
 			}
 		});
 		

@@ -33,10 +33,9 @@ public abstract class Window extends JFrame {
 		setContentPane(window); // Set JPanel as container for window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Allow exit button to actually exit
 		setVisible(true); // Make window visible
-		createClock(); // Have our title bar be the clock that updates
 	}
 	
-	private void createClock() {
+	protected void createClock() {
 		Thread refreshTitleBar = new Thread() {
 			@Override public void run() {
 				while (true) {
