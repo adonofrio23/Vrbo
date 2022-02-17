@@ -43,6 +43,11 @@ public class homePage extends Window {
 			}
 		});
 		
+		signUpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new SignUp(600, 700, "VRBO Sign Up - ");
+			}
+		});
 		window.add(exitButton);
 		window.add(listingButton);
 		window.add(signUpButton);
