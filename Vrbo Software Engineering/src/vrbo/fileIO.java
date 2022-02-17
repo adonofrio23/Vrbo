@@ -18,7 +18,7 @@ public class fileIO
 			fileName = fn;
 		}
 		
-		public void wrSignUpData(String dataStr)
+		public void wrSignUpData(String dataList[]) throws Exception
 		{
 	        FileWriter fwg = null;
 	        try 
@@ -36,10 +36,19 @@ public class fileIO
 	        PrintWriter outg   = new PrintWriter(bwg);
 			
 	        String timeStamp = new SimpleDateFormat("MM-dd-yyyy HH.mm.ss").format(new Date());
+	        outg.println(timeStamp + " : ");
 	        
-	        outg.println(timeStamp + " : " + dataStr);
+	        for (int i = 0; i <= dataList.length; i++) {
+	        	outg.println(dataList);
+	        }
+	       
+
+	        for (int i = 0; i < dataList.length; i++) {
+	        	
+	        	fwg.write(dataList[i] + " , ");
+	        }
 	        
-	        outg.close();
+	        	        outg.close();
 		}
 		
 		public void readUserPass(String username, String password)
