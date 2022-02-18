@@ -37,8 +37,14 @@ public class homePage extends Window {
 		JButton signUpButton = createButton("Sign Up", 16, 700, 15, 120, 80);
 		JButton logInButton = createButton("Log In", 16, 530, 15, 120, 80);
 		
+		listingButton.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				new listingPage(1170, 970, "List Your Property - ");
+			}
+		});
+		
 		logInButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			@Override public void actionPerformed(ActionEvent e) {
 				new logIn(1170, 970, "VRBO Log In - ");
 			}
 		});

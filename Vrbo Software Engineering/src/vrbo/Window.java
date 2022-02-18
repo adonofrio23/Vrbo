@@ -6,18 +6,23 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileSystemView;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public abstract class Window extends JFrame {
 	protected static final long serialVersionUID = 1L;
@@ -75,6 +80,44 @@ public abstract class Window extends JFrame {
  			}
  		}
  	}
+	
+	protected class HomeListener implements ActionListener {
+ 		@Override public void actionPerformed(ActionEvent e) {
+ 			int res = JOptionPane.showConfirmDialog(
+ 					null, 
+ 					"Do you really want to return to VRBO Home Page?", // Exit message
+ 					"VRBO Client",  // Pop-Up Window title
+ 					JOptionPane.INFORMATION_MESSAGE // Options
+ 			);
+ 			
+ 			if (res == JOptionPane.OK_OPTION) {
+ 				dispose();
+ 			}
+ 		}
+ 	}
+	
+	protected class UploadFile implements ActionListener {
+		@Override public void actionPerformed(ActionEvent e) {
+			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+			jfc.setDialogTitle("Select Files:");
+			jfc.setMultiSelectionEnabled(true);
+			jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			jfc.setAcceptAllFileFilterUsed(false);
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG and GIF images", "png", "gif");
+			jfc.addChoosableFileFilter(filter);
+
+			int returnValue = jfc.showOpenDialog(null);
+			if (returnValue == JFileChooser.APPROVE_OPTION) {
+				File[] files = jfc.getSelectedFiles();
+				System.out.println("Files Found\n");
+				Arrays.asList(files).forEach(x -> {
+					if (x.isFile()) {
+						System.out.println(x.getName());
+					}
+				});
+			}
+		}
+	}
 	
 	protected JButton createButton(String tag, int fontSize, int x, int y, int w, int h) {
  		JButton btn = new JButton(tag);
