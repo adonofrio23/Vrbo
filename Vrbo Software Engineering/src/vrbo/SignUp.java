@@ -89,7 +89,39 @@ public class SignUp extends Window{
 				
 				if (usernameField == "" || usernameField == null || usernameField.length() == 0)
 				{
-					JOptionPane.showMessageDialog(null, "ERROR: Name field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ERROR: Username field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				if (passwordField == "" || passwordField == null || passwordField.length() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "ERROR: Password field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				if (fnameField == "" || fnameField == null || fnameField.length() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "ERROR: First Name field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				if (lnameField == "" || lnameField == null || lnameField.length() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "ERROR: Last Name field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				
+				if (emailField == "" || emailField == null || emailField.length() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "ERROR: Email field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				
+				if (phoneField == "" || phoneField == null || phoneField.length() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "ERROR: Phone number field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+				if (ccField == "" || ccField == null || ccField.length() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "ERROR: Credit Card number field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 		
