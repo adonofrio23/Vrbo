@@ -50,7 +50,7 @@ public class socketServerVrbo extends JFrame{
 			el.printStackTrace();
 		}
 		
-		String titleString = "Vrbo Socket Server" + "IP: " + ipAddress.getHostAddress() + "Port# : 3333";
+		String titleString = "Vrbo Socket Server" + "IP: " + ipAddress.getHostAddress() + " Port# : " + socketServer.port;
 		setTitle(titleString);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
