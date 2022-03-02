@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
@@ -155,7 +156,7 @@ public class socketServerVrbo extends JFrame{
 				if (result == JOptionPane.OK_OPTION)
 				{
 					//socketServer.writeHashTableData();
-					
+					socketServer.endSocketServer();
 					dispose();
 					System.exit(0);
 				}		
