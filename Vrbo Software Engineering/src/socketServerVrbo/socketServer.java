@@ -40,8 +40,8 @@ public class socketServer {
 		}
 		
 		try {
-			InetAddress ipAddr = InetAddress.getLocalHost();
-			socketServerVrbo.bottomQuadL.append("Host IP Address: " + ipAddr.getHostAddress() + "\n");
+			String ipAddr = InetAddress.getLocalHost().getHostAddress();
+			socketServerVrbo.bottomQuadL.append("Host IP Address: " + ipAddr + "\n");
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
