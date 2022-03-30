@@ -1,79 +1,71 @@
-package vrbo;
+package app;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-public class SignUp extends Window{
-
-	public static final long serialVersionUID = 10L;
+public class SignUpPage {
+	public static JPanel SignUpPage = null;
+	
+	SignUpPage() {
+		SignUpPage = new JPanel(null);
+		SignUpPage.setName("Sign Up");
+		createHeaderBar();
+		createBody();
+	}
+	
+	private void createHeaderBar() {
+		JButton exitButton = Helper.createButton("Exit", 16, 1070, 15, 80, 80);
+		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
+		JButton homeButton = Helper.createButton("Home Page", 16, 870, 15, 150, 80);
+		homeButton.addActionListener(new Helper.HomeListener());
 		
-		SignUp(int width, int height, String name) {
-			super.width = width;
-			super.height = height;
-			super.name = name;
-			createHeaderBar();
-			addComponents();
-			createWindow();
-		}
-		
-	protected void createHeaderBar() {
+		JLabel slogan = Helper.createLabel("  Travel Better Together", 20, 250, 15, 230, 80);
+		slogan.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		JLabel logo = new JLabel();
-		Image vrboLogo = fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+		Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
 		logo.setIcon(new ImageIcon(vrboLogo));
-		logo.setBounds(240, 40, 150, 80);
+		logo.setBounds(50, 15, 150, 80);
 		
-		window.add(logo);
+		SignUpPage.add(exitButton);
+		SignUpPage.add(homeButton);
+		SignUpPage.add(slogan);
+		SignUpPage.add(logo);
 	}
-		
-		
-	protected void addComponents() {
-		
-		JLabel username = createLabel("Username", 24, 150, 200, 200, 50);
-		JTextField usernameR = createTextField(24, 300, 200, 200, 50);
-		
-		JLabel password = createLabel("Password", 24, 150, 250, 200, 50);
-		JTextField passwordR = createTextField(24, 300, 250, 200, 50);
-		
-		JLabel fname = createLabel("First Name", 24, 150, 300, 200, 50);
-		JTextField fnameR = createTextField(24, 300, 300, 200, 50);
-		
-		JLabel lname = createLabel("Last Name", 24, 150, 350, 200, 50);
-		JTextField lnameR = createTextField(24, 300, 350, 200, 50);
-		
-		JLabel email = createLabel("Email", 24, 150, 400, 200, 50);
-		JTextField emailR = createTextField(24, 300, 400, 200, 50);
-		
-		JLabel phone = createLabel("Phone", 24, 150, 450, 200, 50);
-		JTextField phoneR = createTextField(24, 300, 450, 200, 50);
-		
-		JLabel cc = createLabel("Credit Card", 24, 150, 500, 200, 50);
-		JTextField ccR = createTextField(24, 300, 500, 200, 50);
-		
-		JButton signup = createButton("Sign Up", 25, 215, 550, 200, 50);
-		
-		JButton exit = createButton("Exit", 15, 20, 20, 50, 50);
 	
-		exit.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{			
- 
-				    dispose();
-			}
-			
-		});
+	private void createBody() {
+		JLabel username = Helper.createLabel("Username", 24, 150, 200, 200, 50);
+		JTextField usernameR = Helper.createTextField(24, 300, 200, 200, 50);
+		
+		JLabel password = Helper.createLabel("Password", 24, 150, 250, 200, 50);
+		JTextField passwordR = Helper.createTextField(24, 300, 250, 200, 50);
+		
+		JLabel fname = Helper.createLabel("First Name", 24, 150, 300, 200, 50);
+		JTextField fnameR = Helper.createTextField(24, 300, 300, 200, 50);
+		
+		JLabel lname = Helper.createLabel("Last Name", 24, 150, 350, 200, 50);
+		JTextField lnameR = Helper.createTextField(24, 300, 350, 200, 50);
+		
+		JLabel email = Helper.createLabel("Email", 24, 150, 400, 200, 50);
+		JTextField emailR = Helper.createTextField(24, 300, 400, 200, 50);
+		
+		JLabel phone = Helper.createLabel("Phone", 24, 150, 450, 200, 50);
+		JTextField phoneR = Helper.createTextField(24, 300, 450, 200, 50);
+		
+		JLabel cc = Helper.createLabel("Credit Card", 24, 150, 500, 200, 50);
+		JTextField ccR = Helper.createTextField(24, 300, 500, 200, 50);
+		
+		JButton signup = Helper.createButton("Sign Up", 25, 215, 550, 200, 50);
 		
 		signup.addActionListener(new ActionListener()
 		{
@@ -154,21 +146,20 @@ public class SignUp extends Window{
 			
 		});
 		
-		window.add(username);
-		window.add(usernameR);
-		window.add(password);
-		window.add(passwordR);
-		window.add(fname);
-		window.add(fnameR);
-		window.add(lname);
-		window.add(lnameR);
-		window.add(email);
-		window.add(emailR);
-		window.add(phone);
-		window.add(phoneR);
-		window.add(cc);
-		window.add(ccR);
-		window.add(exit);
-		window.add(signup);
+		SignUpPage.add(username);
+		SignUpPage.add(usernameR);
+		SignUpPage.add(password);
+		SignUpPage.add(passwordR);
+		SignUpPage.add(fname);
+		SignUpPage.add(fnameR);
+		SignUpPage.add(lname);
+		SignUpPage.add(lnameR);
+		SignUpPage.add(email);
+		SignUpPage.add(emailR);
+		SignUpPage.add(phone);
+		SignUpPage.add(phoneR);
+		SignUpPage.add(cc);
+		SignUpPage.add(ccR);
+		SignUpPage.add(signup);
 	}
 }
