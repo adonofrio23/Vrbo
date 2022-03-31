@@ -28,8 +28,7 @@ public class fileIO
 	        }
 	        catch (IOException e)
 	        {
-	        	// TODO Auto-generated catch block
-	        	e.printStackTrace();
+	        	System.out.println("[Error] - " + e.getMessage());
 	        }
 	   	    
 	        BufferedWriter bwg = new BufferedWriter(fwg);

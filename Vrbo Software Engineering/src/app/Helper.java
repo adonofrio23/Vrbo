@@ -30,7 +30,6 @@ public class Helper {
  			
  			if (res == JOptionPane.OK_OPTION) {
  				Window.frame.dispose();
- 				System.exit(0);
  			}
  		}
  	}
@@ -101,7 +100,7 @@ public class Helper {
  			BufferedImage img = ImageIO.read(u);
  			image = img.getScaledInstance(w, h, Image.SCALE_DEFAULT);
  		} catch (Exception e) {
- 
+ 			System.out.println("[Error] - " + e.getMessage());
  		}
  		return image;
  	}
