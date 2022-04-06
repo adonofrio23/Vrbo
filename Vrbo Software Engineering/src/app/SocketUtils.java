@@ -11,8 +11,8 @@ public class SocketUtils {
 	static Socket clientSocket = null;
     static DataOutputStream outToServer = null;
     static BufferedReader inFromServer = null;
-    static final String ip = "10.101.10.74";
-	static final int port = 3333;
+    static final String ip = "10.88.21.35";
+	static final int port = 4545;
 	static boolean socketConnected = false;
     
     public static boolean Connect() {

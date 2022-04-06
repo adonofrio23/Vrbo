@@ -37,7 +37,7 @@ public class socketUtils
 	        else
 	        {        
 	           ipAddress  = "localhost"; //127.0.0.1 and "localhost" aren't working
-	           portNumber = 3333;
+	           portNumber = 4545;
 	        }
 	          
            clientSocket  = new Socket(ipAddress, portNumber);
