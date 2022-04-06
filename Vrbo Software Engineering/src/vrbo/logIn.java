@@ -41,20 +41,20 @@ public class logIn extends Window {
 		window.add(slogan);
 		
 		JLabel logo = new JLabel();
-		Image vrboLogo = fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+		Image vrboLogo = fetchImage("https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Vrbo.svg/1280px-Vrbo.svg.png", 150, 80);
 		logo.setIcon(new ImageIcon(vrboLogo));
-		logo.setBounds(50, 15, 150, 80);
+		logo.setBounds(50, 0, 300, 100);
 		
 		window.add(logo);
 	}
 	
 	protected void addComponents() {
-		JLabel login = createLabel("Log In", 40, 545, 150, 500, 200);
-		JLabel user = createLabel("Username", 30, 250, 300, 300, 80);
-		JLabel pass = createLabel("Password", 30, 250, 500, 300, 80);
+		JLabel login = createLabel("Log In", 20, 545, 150, 500, 200);
+		JLabel user = createLabel("Username", 20, 300, 300, 300, 80);
+		JLabel pass = createLabel("Password", 20, 300, 500, 300, 80);
 		
-		JTextField usernameInput = createTextField(24, 450, 300, 300, 80);
-		JTextField passwordInput = createTextField(24, 450, 500, 300, 80);
+		JTextField usernameInput = createTextField(20, 450, 300, 300, 50);
+		JTextField passwordInput = createTextField(20, 450, 500, 300, 50);
 		
 		JButton submit = createButton("Submit", 30, 450, 650, 300, 80);
 		submit.addActionListener(new ActionListener() {
