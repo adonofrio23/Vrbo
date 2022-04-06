@@ -1,31 +1,13 @@
 package socketServerVrbo;
 
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.net.BindException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.SocketException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Vector;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 
 public class socketServer {	
 	static int port = 4545;
@@ -40,12 +22,6 @@ public class socketServer {
 	static boolean found = false;
 	static String ipAddrOfSocketServer = null;
 
-//	socketServer(Socket csocket, String ip)
-//	{
-//		this.csocket  = csocket;
-//		this.ipString = ip;
-//	} 
-//	
 	static void displayInterfaceInformation(NetworkInterface netint) throws SocketException 
     {	
     	String dname = netint.getName();
@@ -119,17 +95,10 @@ public class socketServer {
 	 
 	     // update the status text area to show progress of program
 	     socketServerVrbo.bottomQuadL.append("IP Address : " + ipAddrOfSocketServer + newline);
-		     
-	     socketServerVrbo.bottomQuadL.setText(ipAddrOfSocketServer + newline);
 	     socketServerVrbo.bottomQuadL.append("Port: " + Integer.toString(port));
-	}
-	 
-	  //   socketServerVrbo.wrToCenterTA("Listening on port " + port_num + newline);
-	 
-	     //
-	     // initialize the hash table to the following keys or if file hash table data exists, then use it
-	     //
-	    
+	     String titleString = "Vrbo Socket Server - " + "Address: " + ipAddrOfSocketServer + ":" + port;
+	     socketServerVrbo.frame.setTitle(titleString);
+	}   
 	
 	public static void endSocketServer() {
 		try {

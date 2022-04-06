@@ -19,6 +19,7 @@ import javax.swing.border.TitledBorder;
 public class socketServerVrbo extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
+	public static socketServerVrbo frame = null;
 	
 	
 	// global variables
@@ -34,7 +35,7 @@ public class socketServerVrbo extends JFrame{
 	//
 	public static void main(String[] args)
 	{
-		socketServerVrbo frame = new socketServerVrbo();
+		frame = new socketServerVrbo();
 		frame.setVisible(true);
 	}
 
@@ -50,15 +51,7 @@ public class socketServerVrbo extends JFrame{
 			el.printStackTrace();
 		}
 		
-		String titleString = "Vrbo Socket Server" + "IP: " + ipAddress.getHostAddress() + " Port# : " + socketServer.port;
-		setTitle(titleString);
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		setTitle(titleString);
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		
 		//
 		// set the Frame size
