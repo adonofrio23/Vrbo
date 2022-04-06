@@ -1,24 +1,37 @@
 package socketServerVrbo;
 
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.net.BindException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.SocketException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
+
 import app.fileIO;
+
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
 public class socketServer implements Runnable {	
-	
-  static int port = 4545;
+	static int port = 4545;
 	static final String newline = "\n";
 	static int first_time = 1;
 	private static ServerSocket ssock = null;
@@ -30,6 +43,7 @@ public class socketServer implements Runnable {
 	Socket csocket;
 	static boolean found = false;
 	static String ipAddrOfSocketServer = null;
+
 
 	socketServer(Socket csocket, String ip)
 	{
@@ -113,8 +127,9 @@ public class socketServer implements Runnable {
 	 
 	     // update the status text area to show progress of program
 	     socketServerVrbo.bottomQuadL.append("IP Address : " + ipAddrOfSocketServer + newline);
+		     
+	     socketServerVrbo.bottomQuadL.setText(ipAddrOfSocketServer + newline);
 	     socketServerVrbo.bottomQuadL.append("Port: " + Integer.toString(port));
-
 		 socketServerVrbo.bottomQuadL.append("Listening on port " + port + newline);
 
 	     
@@ -276,7 +291,8 @@ public class socketServer implements Runnable {
 	      socketServerVrbo.bottomQuadL.append("ERROR : Generic Exception!" + newline);
 	     }
 	   
-      
+         
+        
          if (numOfConnections > 0)
             numOfConnections--;
 
@@ -287,16 +303,7 @@ public class socketServer implements Runnable {
 		 } 
          catch (IOException e)
          {
-	
-	     String titleString = "Vrbo Socket Server - " + "Address: " + ipAddrOfSocketServer + ":" + port;
-	     socketServerVrbo.frame.setTitle(titleString);
-	}   
-	
-	public static void endSocketServer() {
-		try {
-			ssock.close();
-		} catch (IOException e) {
-
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		 }
        
@@ -307,5 +314,8 @@ public class socketServer implements Runnable {
 }
 // end run() thread method
 	
+	
+
+
 	
 
