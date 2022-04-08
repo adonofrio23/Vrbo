@@ -129,7 +129,7 @@ public class socketServer implements Runnable {
 	     socketServerVrbo.bottomQuadL.append("IP Address : " + ipAddrOfSocketServer + newline);
 		     
 	     socketServerVrbo.bottomQuadL.setText(ipAddrOfSocketServer + newline);
-	     socketServerVrbo.bottomQuadL.append("Port: " + Integer.toString(port));
+	     socketServerVrbo.bottomQuadL.append("Port: " + Integer.toString(port) + newline);
 		 socketServerVrbo.bottomQuadL.append("Listening on port " + port + newline);
 
 	     
@@ -149,7 +149,7 @@ public class socketServer implements Runnable {
 			   e.printStackTrace();
 		    }
 		 
-	        socketServerVrbo.bottomQuadL.append("Client Connected : " + sock.getInetAddress()+ newline);
+	        socketServerVrbo.bottomQuadL.append("Client Connected : " + sock.getInetAddress().toString().replace("/", "") + newline);
 	        new Thread(new socketServer(sock, sock.getInetAddress().toString())).start();
 	        
 	     }
