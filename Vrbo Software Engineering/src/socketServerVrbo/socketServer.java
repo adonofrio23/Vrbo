@@ -1,6 +1,8 @@
 package socketServerVrbo;
 
 import java.io.IOException;
+import java.awt.Color;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,6 +26,10 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+import app.Helper;
 import app.fileIO;
 
 import java.io.InputStreamReader;
@@ -124,13 +130,20 @@ public class socketServer implements Runnable {
 	     {
 		    e.printStackTrace();
 	     }
-	 
+	     
+	     JLabel logo = new JLabel();
+	     Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+	     logo.setIcon(new ImageIcon(vrboLogo));
+	     logo.setBounds(421, 10, 200, 50);
+	     socketServerVrbo.top.add(logo);
+	     
 	     // update the status text area to show progress of program
 	     socketServerVrbo.bottomQuadL.append("IP Address : " + ipAddrOfSocketServer + newline);
-		     
 	     socketServerVrbo.bottomQuadL.setText(ipAddrOfSocketServer + newline);
 	     socketServerVrbo.bottomQuadL.append("Port: " + Integer.toString(port) + newline);
 		 socketServerVrbo.bottomQuadL.append("Listening on port " + port + newline);
+		 
+		 socketServerVrbo.top.setBackground(Color.decode("#fbff91"));
 
 	     
 	     sessionDone = false;
