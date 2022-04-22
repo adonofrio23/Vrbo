@@ -116,22 +116,20 @@ public class SignUpPage {
 					JOptionPane.showMessageDialog(null, "ERROR: Credit Card number field is empty!", "VRBO Sign Up", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
-		
-				String customerData[] = new String[7];
-				customerData[0] = usernameField;
-				customerData[1] = passwordField;
-				customerData[2] = fnameField;
-				customerData[3] = lnameField;
-				customerData[4] = emailField;
-				customerData[5] = phoneField;
-				customerData[6] = ccField;
+				SocketUtils.sendMessage("CREATE=\"username\": \"" + usernameField + "\", "
+										+ "\"password\": \"" + passwordField + "\", "
+										+ "\"firstName\": \"" + fnameField + "\", "
+										+ "\"lastName\": \"" + lnameField + "\", "
+										+ "\"email\": \"" + emailField + "\", "
+										+ "\"phone\": \"" + phoneField + "\", "
+										+ "\"cc\": \"" + ccField + "\", ");
 				
-				fileIO fio = new fileIO("customerData.txt");
-				try {
-					fio.wrSignUpData(customerData);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				String validation = SocketUtils.receiveMessage();
+				
+				if (validation.equals("SUCCESS")) {
+					SocketUtils.sendMessage("User Successfully Created: " + usernameField + " / " + passwordField);
+				} else if (validation.equals("ERROR")) {
+					Window.frame.dispose();
 				}
 				
 				usernameR.setText("");
