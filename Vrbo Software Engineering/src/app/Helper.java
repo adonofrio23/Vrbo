@@ -1,9 +1,12 @@
 package app;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,11 +15,13 @@ import java.nio.file.Files;
 import java.util.Arrays;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -82,13 +87,33 @@ public class Helper {
 	public static JButton createButton(String tag, int fontSize, int x, int y, int w, int h) {
  		JButton btn = new JButton(tag);
 		btn.setFont(new Font("Tahoma", Font.PLAIN, fontSize));
+		btn.setForeground(Color.WHITE);
 		btn.setBounds(x, y, w, h);
+		Border emptyBorder = BorderFactory.createEmptyBorder();
+		btn.setBorder(emptyBorder);
+		btn.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		btn.setForeground(Color.WHITE);
+		
+		btn.addMouseListener(new MouseAdapter() {
+	         Color color = btn.getForeground();
+	         public void mouseEntered(MouseEvent me) {
+	            color = btn.getForeground();
+	            btn.setForeground(Color.GRAY); // change the color to green when mouse over a button
+	            btn.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+	         }
+	         public void mouseExited(MouseEvent me) {
+	            btn.setForeground(color);
+	            btn.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+	         }
+	      });
+		
 		return btn;
  	}
  	
  	public static JLabel createLabel(String tag, int fontSize, int x, int y, int w, int h) {
  		JLabel label = new JLabel(tag);
  		label.setFont(new Font("Tahoma", Font.PLAIN, fontSize));
+ 		label.setForeground(Color.WHITE);
  		label.setBounds(x, y, w, h);
  		return label;
  	}

@@ -2,14 +2,20 @@ package server;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+
+import app.Helper;
 
 public class ServerWindow {
 	public static JPanel ServerWindow = null;
@@ -113,5 +119,11 @@ public class ServerWindow {
 		exitButton.setBounds(4, 620, 133, 30);;
 		ServerWindow.add(exitButton);
 		bottomQuadL.append("Server started on: " + Server.ip + ":" + Server.port + "\n");
+		top.setBackground(Color.decode("#fbff91"));
+		JLabel logo = new JLabel();
+	    Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+	    logo.setIcon(new ImageIcon(vrboLogo));
+	    logo.setBounds(421, 10, 200, 50);
+	    top.add(logo);
 	}
 }

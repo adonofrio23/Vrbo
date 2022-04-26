@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,23 +17,25 @@ public class LogInPage {
 	LogInPage() {
 		LogInPage = new JPanel(null);
 		LogInPage.setName("Log In");
+		LogInPage.setBackground(Color.decode("#0e214b"));
 		createHeaderBar();
 		createBody();
 	}
 	
 	private void createHeaderBar() {
-		JButton exitButton = Helper.createButton("Exit", 16, 1070, 15, 80, 80);
-		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
-		JButton homeButton = Helper.createButton("Home Page", 16, 870, 15, 150, 80);
+		JButton exitButton = Helper.createButton("Exit", 16, 1010, 90, 100, 30);		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
+		JButton homeButton = Helper.createButton("Home", 16, 900, 90, 100, 30);
+
 		homeButton.addActionListener(new Helper.HomeListener());
 		
-		JLabel slogan = Helper.createLabel("  Travel Better Together", 20, 250, 15, 230, 80);
-		slogan.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+		JLabel slogan = Helper.createLabel("Travel Better Together", 20, 130, 90, 300, 30);
+		slogan.setForeground(Color.WHITE);
 		JLabel logo = new JLabel();
-		Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+		//Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+		Image vrboLogo = Helper.fetchImage("https://csvcus.homeaway.com/rsrcs-crs/cdn-logos/5.1.2/sitename/vrbo/web/image_src.png", 150, 80);
 		logo.setIcon(new ImageIcon(vrboLogo));
-		logo.setBounds(50, 15, 150, 80);
+		logo.setBounds(5, 0, 150, 200);
 		
 		LogInPage.add(exitButton);
 		LogInPage.add(homeButton);
@@ -43,14 +44,16 @@ public class LogInPage {
 	}
 	
 	private void createBody() {
-		JLabel login = Helper.createLabel("Log In", 40, 545, 150, 500, 200);
-		JLabel user = Helper.createLabel("Username", 30, 250, 300, 300, 80);
-		JLabel pass = Helper.createLabel("Password", 30, 250, 500, 300, 80);
+				
+		JLabel login = Helper.createLabel("Log In", 30, 540, 220, 500, 200);
+		JLabel user = Helper.createLabel("Username", 20, 400, 400, 200, 30);
+		JLabel pass = Helper.createLabel("Password", 20, 400, 460, 200, 30);
 		
-		JTextField usernameInput = Helper.createTextField(24, 450, 300, 300, 80);
-		JTextField passwordInput = Helper.createTextField(24, 450, 500, 300, 80);
+		JTextField usernameInput = Helper.createTextField(20, 500, 400, 200, 30);
+		JTextField passwordInput = Helper.createTextField(20, 500, 460, 200, 30);
 		
-		JButton submit = Helper.createButton("Submit", 30, 450, 650, 300, 80);
+		JButton submit = Helper.createButton("Submit", 20, 530, 550, 100, 30);
+
 		submit.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
 				String username = usernameInput.getText();
@@ -80,6 +83,7 @@ public class LogInPage {
 				} else {
 					System.out.println("Invalid Command");
 					Window.frame.dispose();
+					SocketUtils.sendMessage("Hello...testing");
 				}
 			}
 		});
