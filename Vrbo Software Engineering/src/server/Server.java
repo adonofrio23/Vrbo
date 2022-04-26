@@ -78,7 +78,6 @@ public class Server implements Runnable {
 				System.out.println("[Server] - " + e.getMessage());
 			}
 			
-			ServerWindow.bottomQuadL.append("Client Connected: " + sock.getInetAddress().toString().replace("/", "") + "\n");
 			new Thread(new Server(sock)).start();
 		}
 	
@@ -134,6 +133,8 @@ public class Server implements Runnable {
 	public void run() {
 		try {
 			boolean sessionDone = false;
+			if (socket != null && socket.isConnected())
+				ServerWindow.bottomQuadL.append("Client Connected: " + socket.getInetAddress().toString().replace("/", "") + "\n");
 			_connections++;
 			ServerWindow.bottomQuadL.append("Current # of connections: " + _connections + "\n");
 			
@@ -190,7 +191,5 @@ public class Server implements Runnable {
 		} catch (IOException e) {
 			System.out.println("[Server] - " + e.getMessage());
 		}
-		
-		ServerWindow.bottomQuadL.append("Current # of connections: " + _connections + "\n");
 	}
 }
