@@ -19,23 +19,25 @@ public class SignUpPage {
 	SignUpPage() {
 		SignUpPage = new JPanel(null);
 		SignUpPage.setName("Sign Up");
+		SignUpPage.setBackground(Color.decode("#0e214b"));
 		createHeaderBar();
 		createBody();
 	}
 	
 	private void createHeaderBar() {
-		JButton exitButton = Helper.createButton("Exit", 16, 1070, 15, 80, 80);
-		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
-		JButton homeButton = Helper.createButton("Home Page", 16, 870, 15, 150, 80);
+		JButton exitButton = Helper.createButton("Exit", 16, 1010, 90, 100, 30);		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
+		JButton homeButton = Helper.createButton("Home", 16, 900, 90, 100, 30);
+
 		homeButton.addActionListener(new Helper.HomeListener());
 		
-		JLabel slogan = Helper.createLabel("  Travel Better Together", 20, 250, 15, 230, 80);
-		slogan.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+		JLabel slogan = Helper.createLabel("Travel Better Together", 20, 130, 90, 300, 30);
+		slogan.setForeground(Color.WHITE);
 		JLabel logo = new JLabel();
-		Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+		//Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+		Image vrboLogo = Helper.fetchImage("https://csvcus.homeaway.com/rsrcs-crs/cdn-logos/5.1.2/sitename/vrbo/web/image_src.png", 150, 80);
 		logo.setIcon(new ImageIcon(vrboLogo));
-		logo.setBounds(50, 15, 150, 80);
+		logo.setBounds(5, 0, 150, 200);
 		
 		SignUpPage.add(exitButton);
 		SignUpPage.add(homeButton);
@@ -44,29 +46,33 @@ public class SignUpPage {
 	}
 	
 	private void createBody() {
-		JLabel username = Helper.createLabel("Username", 24, 150, 200, 200, 50);
-		JTextField usernameR = Helper.createTextField(24, 300, 200, 200, 50);
 		
-		JLabel password = Helper.createLabel("Password", 24, 150, 250, 200, 50);
-		JTextField passwordR = Helper.createTextField(24, 300, 250, 200, 50);
+		JLabel signUpHeader = Helper.createLabel("Sign Up", 30, 540, 220, 500, 100);
+
 		
-		JLabel fname = Helper.createLabel("First Name", 24, 150, 300, 200, 50);
-		JTextField fnameR = Helper.createTextField(24, 300, 300, 200, 50);
+		JLabel username = Helper.createLabel("Username", 20, 400, 300, 200, 30); 
+		JTextField usernameR = Helper.createTextField(24, 500, 300, 200, 30);
 		
-		JLabel lname = Helper.createLabel("Last Name", 24, 150, 350, 200, 50);
-		JTextField lnameR = Helper.createTextField(24, 300, 350, 200, 50);
+		JLabel password = Helper.createLabel("Password", 20, 400, 350, 200, 30);
+		JTextField passwordR = Helper.createTextField(20, 500, 350, 200, 30);
 		
-		JLabel email = Helper.createLabel("Email", 24, 150, 400, 200, 50);
-		JTextField emailR = Helper.createTextField(24, 300, 400, 200, 50);
+		JLabel fname = Helper.createLabel("First Name", 20, 400, 400, 200, 30);
+		JTextField fnameR = Helper.createTextField(20, 500, 400, 200, 30);
 		
-		JLabel phone = Helper.createLabel("Phone", 24, 150, 450, 200, 50);
-		JTextField phoneR = Helper.createTextField(24, 300, 450, 200, 50);
+		JLabel lname = Helper.createLabel("Last Name", 20, 400, 450, 200, 30);
+		JTextField lnameR = Helper.createTextField(20, 500, 450, 200, 30);
 		
-		JLabel cc = Helper.createLabel("Credit Card", 24, 150, 500, 200, 50);
-		JTextField ccR = Helper.createTextField(24, 300, 500, 200, 50);
+		JLabel email = Helper.createLabel("Email", 20, 400, 500, 200, 30);
+		JTextField emailR = Helper.createTextField(20, 500, 500, 200, 30);
 		
-		JButton signup = Helper.createButton("Sign Up", 25, 215, 550, 200, 50);
+		JLabel phone = Helper.createLabel("Phone", 20, 400, 550, 200, 30);
+		JTextField phoneR = Helper.createTextField(20, 500, 550, 200, 30);
 		
+		JLabel cc = Helper.createLabel("Credit Card", 20, 400, 600, 200, 30);
+		JTextField ccR = Helper.createTextField(20, 500, 600, 200, 30);
+		
+		JButton signup = Helper.createButton("Sign Up", 20, 550, 650, 100, 30);
+
 		signup.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -146,6 +152,7 @@ public class SignUpPage {
 			
 		});
 		
+		SignUpPage.add(signUpHeader);
 		SignUpPage.add(username);
 		SignUpPage.add(usernameR);
 		SignUpPage.add(password);
