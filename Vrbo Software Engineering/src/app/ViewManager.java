@@ -12,7 +12,7 @@ public class ViewManager {
 	
 	public static void initializeView() {
 		Container = new JPanel(cards);
-		System.out.println("[JPanel] - Container Initialized Successfully");
+		System.out.println("[App] - Container Initialized Successfully");
 		switchPage("Home", Home.HomePage);
 	}
 	

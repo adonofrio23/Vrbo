@@ -1,25 +1,24 @@
-package socketServerVrbo;
+package server;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Date;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class socketServerVrbo extends JFrame{
-	
-	private static final long serialVersionUID = 1L;
-	public static socketServerVrbo frame = null;
+import app.Helper;
+
+public class ServerWindow {
+	public static JPanel ServerWindow = null;
 	
 	
 	// global variables
@@ -30,44 +29,9 @@ public class socketServerVrbo extends JFrame{
 	public static JTextArea bottomQuadR;
 	public static JTextArea bottom;
 	
-	//
-	// main method starts here
-	//
-	public static void main(String[] args)
-	{
-		frame = new socketServerVrbo();
-		frame.setVisible(true);
-	}
-
-	public socketServerVrbo() {
-		
-		InetAddress ipAddress = null;
-		try
-		{
-			ipAddress = InetAddress.getLocalHost();
-		}
-		catch (UnknownHostException el)
-		{
-			el.printStackTrace();
-		}
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//
-		// set the Frame size
-		//
-		
-		setSize(1050, 700);
-		
-		// 
-		// panel title
-		//
-		JPanel contentPane = new JPanel();
-		contentPane.setBorder(new TitledBorder(new EtchedBorder(), "Vrbo Socket Server"));
-		
-		
-		setContentPane(contentPane);
-		
+	public ServerWindow() {
+		ServerWindow = new JPanel(null);
+		ServerWindow.setBorder(new TitledBorder(new EtchedBorder(), "Vrbo Socket Server"));
 		//
 		// TOP - available text area - has the real-time clock display for now
 		//
@@ -76,7 +40,7 @@ public class socketServerVrbo extends JFrame{
 		top.setBounds(15, 15, 1015, 90);
 		top.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		top.setBackground(Color.WHITE);
-		contentPane.add(top);
+		ServerWindow.add(top);
 		
 		//
 		// Top Quadrant Left - Listings
@@ -86,7 +50,7 @@ public class socketServerVrbo extends JFrame{
 		topQuadL.setBounds(15, 120, 500, 200);
 		topQuadL.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		topQuadL.setBackground(Color.WHITE);
-		contentPane.add(topQuadL);
+		ServerWindow.add(topQuadL);
 		
 		
 		//
@@ -97,7 +61,7 @@ public class socketServerVrbo extends JFrame{
 		topQuadR.setBounds(530, 120, 500, 200);
 		topQuadR.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		topQuadR.setBackground(Color.WHITE);
-		contentPane.add(topQuadR);
+		ServerWindow.add(topQuadR);
 	
 		
 		//
@@ -108,7 +72,7 @@ public class socketServerVrbo extends JFrame{
 		bottomQuadL.setBounds(15, 335, 500, 200);
 		bottomQuadL.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		bottomQuadL.setBackground(Color.WHITE);
-		contentPane.add(bottomQuadL);
+		ServerWindow.add(bottomQuadL);
 		
 		//
 		//Bottom Quadrant Right - Users
@@ -118,7 +82,7 @@ public class socketServerVrbo extends JFrame{
 		bottomQuadR.setBounds(530, 335, 500, 200);
 		bottomQuadR.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		bottomQuadR.setBackground(Color.WHITE);
-		contentPane.add(bottomQuadR);
+		ServerWindow.add(bottomQuadR);
 		
 		
 		//
@@ -129,7 +93,7 @@ public class socketServerVrbo extends JFrame{
 		bottom.setBounds(15, 550, 1015, 35);
 		bottom.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		bottom.setBackground(Color.WHITE);
-		contentPane.add(bottom);
+		ServerWindow.add(bottom);
 		
 		//
 		// define all BUTTONS
@@ -148,77 +112,18 @@ public class socketServerVrbo extends JFrame{
 				
 				if (result == JOptionPane.OK_OPTION)
 				{
-					//socketServer.writeHashTableData();
-					socketServer.endSocketServer();
-					dispose();
-					System.exit(0);
+					Server.closeServer();
 				}		
 			}
 		});
 		exitButton.setBounds(4, 620, 133, 30);;
-		contentPane.add(exitButton);
-		
-		// start all threads  for the GUI screen here
-				startRealTimeClock();
-						
-				// start the socket server thread - will start to accept client connections
-				startSockServer();
-				
-				//
-				// lights, camera, action
-				//
-				contentPane.setLayout(null);
-				
-				this.setLocationRelativeTo(null);
-			}
-		
-/*
- * Thread to update weather info for NYC and Boston    
- */     
-private void startSockServer()
-{	
-	 Thread refreshWeatherThread = new Thread()
-	 {
-	    public void run()
-		  { 	
-			  socketServer.runSockServer();
-	      }
-	 };
-
-  refreshWeatherThread.start();
-}
-	
-
-/*
- * Thread to update real-time clock
- */     
-private void startRealTimeClock()
-{	
-	   Thread refreshClock = new Thread()
-	   {
-		  public void run()
-		  {  
-			 while (true)
-			 {	 			      
-				   Date   date = new Date();
-				   String str = String.format("\n    %tc", date);
-					 
-				   top.setText("");
-				   top.setText(str);
-				   
-			    	try
-				    {
-					   sleep(5000L);
-				    }
-				    catch (InterruptedException e)
-				   {
-					   // TODO Auto-generated catch block
-					  e.printStackTrace();
-				   }
-           } // end while true 
-	     }
-	  };
-
-  refreshClock.start();
-}
+		ServerWindow.add(exitButton);
+		bottomQuadL.append("Server started on: " + Server.ip + ":" + Server.port + "\n");
+		top.setBackground(Color.decode("#fbff91"));
+		JLabel logo = new JLabel();
+	    Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+	    logo.setIcon(new ImageIcon(vrboLogo));
+	    logo.setBounds(421, 10, 200, 50);
+	    top.add(logo);
+	}
 }

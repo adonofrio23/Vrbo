@@ -9,7 +9,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 import javax.imageio.ImageIO;
@@ -19,7 +21,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -62,16 +63,21 @@ public class Helper {
 			jfc.setMultiSelectionEnabled(true);
 			jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			jfc.setAcceptAllFileFilterUsed(false);
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG and GIF images", "png", "gif");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, GIF, JPEG, JPG", "png", "gif", "jpeg", "jpg");
 			jfc.addChoosableFileFilter(filter);
 
 			int returnValue = jfc.showOpenDialog(null);
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
 				File[] files = jfc.getSelectedFiles();
-				System.out.println("Files Found\n");
 				Arrays.asList(files).forEach(x -> {
 					if (x.isFile()) {
-						System.out.println(x.getName());
+						byte[] fileData = null;
+						try {
+							fileData = Files.readAllBytes(x.toPath());
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+						SocketUtils.sendMessage(fileData.toString());
 					}
 				});
 			}

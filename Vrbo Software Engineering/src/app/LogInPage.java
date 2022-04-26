@@ -5,14 +5,12 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 public class LogInPage {
 	public static JPanel LogInPage = null;
@@ -61,7 +59,10 @@ public class LogInPage {
 				String username = usernameInput.getText();
 				String password = passwordInput.getText();
 				
-				if (username.length() == 0 || password.length() == 0) {
+				SocketUtils.sendMessage("LOGIN=\"username\": \"" + username + "\", \"password\": \"" + password + "\"");
+				String validation = SocketUtils.receiveMessage();
+				
+				if (validation.equals("INVALID")) {
 					String[] options = {"OK"};
 					JOptionPane.showOptionDialog(
 		 					null, 
@@ -73,7 +74,15 @@ public class LogInPage {
 		                    options,
 		                    options[0]
 		 			);
+				} else if (validation.equals("VALID")) {
+					SocketUtils.sendMessage("User Successfully Logged In: " + username + " / " + password);
+					usernameInput.setText("");
+					passwordInput.setText("");
+				} else if (validation.equals("ERROR")) {
+					Window.frame.dispose();
 				} else {
+					System.out.println("Invalid Command");
+					Window.frame.dispose();
 					SocketUtils.sendMessage("Hello...testing");
 				}
 			}

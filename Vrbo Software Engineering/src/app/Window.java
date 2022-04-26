@@ -15,9 +15,9 @@ public class Window extends JFrame {
 	public static void initializeWindow(int width, int height, String name) {
 		try {
 			frame = new JFrame();
-			System.out.println("[JFrame] - Window Initialized Successfully");
+			System.out.println("[App] - Window Initialized Successfully");
 		} catch (HeadlessException e) {
-			System.out.println("[JFrame] - Window Failed To Initialize");
+			System.out.println("[App] - Window Failed To Initialize");
 			System.exit(1);
 		}
 		
