@@ -1,8 +1,6 @@
 package socketServerVrbo;
 
 import java.io.IOException;
-import java.awt.Color;
-import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,10 +24,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
-import app.Helper;
 import app.fileIO;
 
 import java.io.InputStreamReader;
@@ -141,9 +136,9 @@ public class socketServer implements Runnable {
 	     socketServerVrbo.bottomQuadL.append("IP Address : " + ipAddrOfSocketServer + newline);
 	     socketServerVrbo.bottomQuadL.setText(ipAddrOfSocketServer + newline);
 	     socketServerVrbo.bottomQuadL.append("Port: " + Integer.toString(port) + newline);
-		 socketServerVrbo.bottomQuadL.append("Listening on port " + port + newline);
+		   socketServerVrbo.bottomQuadL.append("Listening on port " + port + newline);
 		 
-		 socketServerVrbo.top.setBackground(Color.decode("#fbff91"));
+		   socketServerVrbo.top.setBackground(Color.decode("#fbff91"));
 
 	     
 	     sessionDone = false;
