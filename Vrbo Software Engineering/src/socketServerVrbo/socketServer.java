@@ -24,6 +24,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
+
 import app.fileIO;
 
 import java.io.InputStreamReader;
@@ -124,13 +125,20 @@ public class socketServer implements Runnable {
 	     {
 		    e.printStackTrace();
 	     }
-	 
+	     
+	     JLabel logo = new JLabel();
+	     Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+	     logo.setIcon(new ImageIcon(vrboLogo));
+	     logo.setBounds(421, 10, 200, 50);
+	     socketServerVrbo.top.add(logo);
+	     
 	     // update the status text area to show progress of program
 	     socketServerVrbo.bottomQuadL.append("IP Address : " + ipAddrOfSocketServer + newline);
-		     
 	     socketServerVrbo.bottomQuadL.setText(ipAddrOfSocketServer + newline);
-	     socketServerVrbo.bottomQuadL.append("Port: " + Integer.toString(port));
-		 socketServerVrbo.bottomQuadL.append("Listening on port " + port + newline);
+	     socketServerVrbo.bottomQuadL.append("Port: " + Integer.toString(port) + newline);
+		   socketServerVrbo.bottomQuadL.append("Listening on port " + port + newline);
+		 
+		   socketServerVrbo.top.setBackground(Color.decode("#fbff91"));
 
 	     
 	     sessionDone = false;
@@ -149,7 +157,7 @@ public class socketServer implements Runnable {
 			   e.printStackTrace();
 		    }
 		 
-	        socketServerVrbo.bottomQuadL.append("Client Connected : " + sock.getInetAddress()+ newline);
+	        socketServerVrbo.bottomQuadL.append("Client Connected : " + sock.getInetAddress().toString().replace("/", "") + newline);
 	        new Thread(new socketServer(sock, sock.getInetAddress().toString())).start();
 	        
 	     }
