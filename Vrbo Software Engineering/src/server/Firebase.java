@@ -20,13 +20,14 @@ public class Firebase {
 			options = FirebaseOptions.builder()
 					.setCredentials(GoogleCredentials.fromStream(serviceAccount))
 					.setDatabaseUrl("https://vrbo-server.firebaseio.com/")
+					.setStorageBucket("vrbo-server.appspot.com")
 					.build();
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("[Firebase] - Failed To Initialize");
 			return false;
 		}
-		
+	
 		FirebaseApp.initializeApp(options);
 		System.out.println("[Firebase] - Initialized Successfully");
 		db = FirestoreClient.getFirestore();
