@@ -23,23 +23,25 @@ public class ListPropertyPage {
 	ListPropertyPage() {
 		ListPropertyPage = new JPanel(null);
 		ListPropertyPage.setName("List Property");
+		ListPropertyPage.setBackground(Color.decode("#0e214b"));
 		createHeaderBar();
 		createBody();
 	}
 	
 	private void createHeaderBar() {
-		JButton exitButton = Helper.createButton("Exit", 16, 1070, 15, 80, 80);
-		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
-		JButton homeButton = Helper.createButton("Home Page", 16, 870, 15, 150, 80);
+		JButton exitButton = Helper.createButton("Exit", 16, 1010, 90, 100, 30);		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
+		JButton homeButton = Helper.createButton("Home", 16, 900, 90, 100, 30);
+
 		homeButton.addActionListener(new Helper.HomeListener());
 		
-		JLabel slogan = Helper.createLabel("  Travel Better Together", 20, 250, 15, 230, 80);
-		slogan.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+		JLabel slogan = Helper.createLabel("Travel Better Together", 20, 130, 90, 300, 30);
+		slogan.setForeground(Color.WHITE);
 		JLabel logo = new JLabel();
-		Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+		//Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+		Image vrboLogo = Helper.fetchImage("https://csvcus.homeaway.com/rsrcs-crs/cdn-logos/5.1.2/sitename/vrbo/web/image_src.png", 150, 80);
 		logo.setIcon(new ImageIcon(vrboLogo));
-		logo.setBounds(50, 15, 150, 80);
+		logo.setBounds(5, 0, 150, 200);
 		
 		ListPropertyPage.add(exitButton);
 		ListPropertyPage.add(homeButton);
@@ -48,6 +50,7 @@ public class ListPropertyPage {
 	}
 	
 	private void createBody() {
+
 		JLabel title = Helper.createLabel("List Your Property", 40, 500, 80, 500, 200);
 		JLabel address = Helper.createLabel("Address of Property", 24, 150, 200, 250, 50);
 		JTextField addressField = Helper.createTextField(24, 400, 200, 200, 50);
@@ -115,6 +118,9 @@ public class ListPropertyPage {
 			}
 		});
 		
+
+
+
 		ListPropertyPage.add(address);
 		ListPropertyPage.add(addressField);
 		ListPropertyPage.add(nBed);
