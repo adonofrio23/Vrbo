@@ -8,6 +8,7 @@ import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.SocketException;
 import java.net.Socket;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Enumeration;
 
@@ -165,6 +166,20 @@ public class Server implements Runnable {
 						String cc = parse("cc", message);
 						
 						CreateUser.create(username, password, firstName, lastName, email, phone, cc);
+					}
+					
+					if (message.startsWith("LIST=")) {
+						String address = parse("address", message);
+						String beds = parse("beds", message);
+						String baths = parse("baths", message);
+						String amenities = parse("amenities", message);
+						String description = parse("description", message);
+						String price = parse("price", message);
+						String city = parse("city", message);
+						String picture = parse("picture", message);
+						byte[] pic = Base64.getDecoder().decode(picture);
+						
+						ListProperty.list(address, beds, baths, amenities, description, price, city, pic);
 					}
 					
 				}

@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -60,7 +59,7 @@ public class Helper {
 		@Override public void actionPerformed(ActionEvent e) {
 			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 			jfc.setDialogTitle("Select Files:");
-			jfc.setMultiSelectionEnabled(true);
+			jfc.setMultiSelectionEnabled(false);
 			jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			jfc.setAcceptAllFileFilterUsed(false);
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, GIF, JPEG, JPG", "png", "gif", "jpeg", "jpg");
@@ -68,18 +67,14 @@ public class Helper {
 
 			int returnValue = jfc.showOpenDialog(null);
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
-				File[] files = jfc.getSelectedFiles();
-				Arrays.asList(files).forEach(x -> {
-					if (x.isFile()) {
-						byte[] fileData = null;
-						try {
-							fileData = Files.readAllBytes(x.toPath());
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
-						SocketUtils.sendMessage(fileData.toString());
+				File file = jfc.getSelectedFile();
+				if (file.isFile()) {
+					try {
+						ListPropertyPage.picture = Files.readAllBytes(file.toPath());
+					} catch (IOException e1) {
+						e1.printStackTrace();
 					}
-				});
+				}
 			}
 		}
 	}

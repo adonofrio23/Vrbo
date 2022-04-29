@@ -23,7 +23,8 @@ public class LogInPage {
 	}
 	
 	private void createHeaderBar() {
-		JButton exitButton = Helper.createButton("Exit", 16, 1010, 90, 100, 30);		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
+		JButton exitButton = Helper.createButton("Exit", 16, 1010, 90, 100, 30);		
+		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
 		JButton homeButton = Helper.createButton("Home", 16, 900, 90, 100, 30);
 
 		homeButton.addActionListener(new Helper.HomeListener());
@@ -83,7 +84,6 @@ public class LogInPage {
 				} else {
 					System.out.println("Invalid Command");
 					Window.frame.dispose();
-					SocketUtils.sendMessage("Hello...testing");
 				}
 			}
 		});

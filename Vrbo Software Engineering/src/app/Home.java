@@ -91,14 +91,14 @@ public class Home {
 		search.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		search.setBounds(150, 185, 250, 220);
 		
-		JLabel checkInLabel = Helper.createLabel("Check In", 20, 420, 240, 100, 30);
-		JTextField checkInDate = Helper.createTextField(15, 420, 280, 100, 30);
+		JLabel bedsLabel = Helper.createLabel("Beds", 20, 420, 240, 100, 30);
+		JTextField beds = Helper.createTextField(15, 420, 280, 100, 30);
 		
-		JLabel chooseCheckOut = Helper.createLabel("Check Out", 20, 570, 240, 100, 30);
-		JTextField checkOutDate = Helper.createTextField(15, 570, 280, 100, 30);
+		JLabel bathsLabel = Helper.createLabel("Baths", 20, 570, 240, 100, 30);
+		JTextField baths = Helper.createTextField(15, 570, 280, 100, 30);
 		
-		JLabel numberOfGuests = Helper.createLabel("Number of Guests", 20, 720, 240, 200, 30);
-		JTextField guestNumber = Helper.createTextField(15, 720, 280, 100, 30);
+		JLabel priceLabel = Helper.createLabel("Price", 20, 720, 240, 200, 30);
+		JTextField price = Helper.createTextField(15, 720, 280, 100, 30);
 		
 		JButton pressSearch = Helper.createButton("Search", 20, 950, 280, 100, 30);
 		JLabel searchBG = new JLabel();
@@ -111,12 +111,12 @@ public class Home {
 		
 		HomePage.add(optionMenu);
 		HomePage.add(search);
-		HomePage.add(checkInLabel);
-		HomePage.add(checkInDate);
-		HomePage.add(chooseCheckOut);
-		HomePage.add(checkOutDate);
-		HomePage.add(numberOfGuests);
-		HomePage.add(guestNumber);
+		HomePage.add(bedsLabel);
+		HomePage.add(beds);
+		HomePage.add(bathsLabel);
+		HomePage.add(baths);
+		HomePage.add(priceLabel);
+		HomePage.add(price);
 		HomePage.add(pressSearch);
 		HomePage.add(searchBG);
 		
