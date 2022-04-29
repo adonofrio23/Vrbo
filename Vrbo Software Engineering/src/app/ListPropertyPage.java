@@ -51,28 +51,28 @@ public class ListPropertyPage {
 	
 	private void createBody() {
 
-		JLabel title = Helper.createLabel("List Your Property", 40, 500, 80, 500, 200);
-		JLabel address = Helper.createLabel("Address of Property", 24, 150, 200, 250, 50);
-		JTextField addressField = Helper.createTextField(24, 400, 200, 200, 50);
-		JLabel nBed = Helper.createLabel("Number of Beds", 24, 150, 250, 250, 50);
-		JTextField nBedField = Helper.createTextField(24, 400, 250, 200, 50);
-		JLabel nBath = Helper.createLabel("Number of Baths", 24, 150, 300, 250, 50);
-		JTextField nBathField = Helper.createTextField(24, 400, 300, 200, 50);
-		JLabel amenities = Helper.createLabel("Amenities", 24, 150, 350, 250, 50);
-		JTextField amenitiesField = Helper.createTextField(24, 400, 350, 200, 50);
-		JLabel description = Helper.createLabel("Description", 24, 150, 400, 250, 50);
-		JTextField descriptionField = Helper.createTextField(24, 400, 400, 200, 200);
-		JLabel price = Helper.createLabel("Price", 24, 150, 600, 250, 50);
-		JTextField priceField = Helper.createTextField(24, 400, 600, 200, 50);
-		JButton picUploadBtn = Helper.createButton("Upload Picture", 10, 250, 650, 150, 50);
+		JLabel title = Helper.createLabel("List Your Property", 24, 500, 240, 200, 30);
+		JLabel address = Helper.createLabel("Address of Property", 20, 320, 300, 200, 30);
+		JTextField addressField = Helper.createTextField(20, 500, 300, 200, 30);
+		JLabel nBed = Helper.createLabel("Number of Beds", 20, 320, 350, 200, 30);
+		JTextField nBedField = Helper.createTextField(20, 500, 350, 200, 30);
+		JLabel nBath = Helper.createLabel("Number of Baths", 20, 320, 400, 200, 30);
+		JTextField nBathField = Helper.createTextField(20, 500, 400, 200, 30);
+		JLabel amenities = Helper.createLabel("Amenities", 20, 320, 450, 200, 30);
+		JTextField amenitiesField = Helper.createTextField(20, 500, 450, 200, 30);
+		JLabel description = Helper.createLabel("Description", 20, 320, 500, 200, 30);
+		JTextField descriptionField = Helper.createTextField(20, 500, 500, 200, 100);
+		JLabel price = Helper.createLabel("Price", 20, 320, 600, 250, 50);
+		JTextField priceField = Helper.createTextField(20, 500, 600, 200, 30);
+		JButton picUploadBtn = Helper.createButton("Upload Picture", 20, 400, 650, 400, 30);
 		picUploadBtn.addActionListener(new Helper.UploadFile());
-		JLabel optionMenu = Helper.createLabel("City", 20, 450, 650, 100, 30);
+		JLabel optionMenu = Helper.createLabel("City", 20, 750, 300, 100, 30);
 		optionMenu.setForeground(Color.WHITE);
 		
 		String[] options = {"New York City, NY", "Tampa Bay, FL", "Denver, CO", "Los Angeles, CA"};
 		JComboBox<String> search = new JComboBox<>(options);
 		search.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		search.setBounds(500, 565, 250, 220);
+		search.setBounds(825, 210, 250, 220);
 		
 		JButton submitBtn = Helper.createButton("Submit", 25, 215, 700, 200, 50);
 		submitBtn.addActionListener(new ActionListener() {
