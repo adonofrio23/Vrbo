@@ -107,6 +107,19 @@ public class Home {
 		JButton pressSearch = Helper.createButton("Search", 20, 950, 280, 100, 30);
 		JLabel searchBG = new JLabel();
 		
+		pressSearch.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				String location = search.getSelectedItem().toString();
+				if (ViewManager.Pages.containsKey("Listings")) {
+					//switch to listing page for that location
+					ViewManager.switchPage("Listings", ViewManager.Pages.get("Listings"));
+				} else {
+					new ListingsByLocation(location);
+					ViewManager.switchPage("Listings", ListingsByLocation.ListingsByLocation);
+				}
+			}
+		});
+		
 //		Image searchBGImage = Helper.fetchImage("https://images.unsplash.com/photo-1570304816841-906a17d7b067?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2064&q=80", 1000, 300);
 //		searchBG.setIcon(new ImageIcon(searchBGImage));
 //		searchBG.setBounds(90, 90, 1000, 300);
@@ -132,7 +145,7 @@ JLabel popListingLabel = Helper.createLabel("New Listings", 30, 500, 390, 200, 3
 		tampa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-						
+					//bring you to the listing page of that property	
 			}
 		});
 		
