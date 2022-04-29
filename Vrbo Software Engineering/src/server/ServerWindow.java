@@ -52,7 +52,6 @@ public class ServerWindow {
 		topQuadL.setBackground(Color.WHITE);
 		ServerWindow.add(topQuadL);
 		
-		
 		//
 		// Top Quadrant Right - Profit
 		//
