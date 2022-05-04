@@ -163,6 +163,17 @@ JLabel popListingLabel = Helper.createLabel("New Listings", 30, 500, 390, 200, 3
 			}
 		});
 		
+		sanDiego.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				if (ViewManager.Pages.containsKey("Listing Page")) {
+					ViewManager.switchPage("Listing Page", ViewManager.Pages.get("Listing Page"));
+				} else {
+					new ListingPageTemplate();
+					ViewManager.switchPage("Listing Page", ListingPageTemplate.ListingPage);
+				}
+			}
+		});
+		
 		JLabel tampaLocationLabel = Helper.createLabel("Tampa Bay, FL", 16, 90, 640, 300, 100);
 		JLabel tampaBedBathLabel = Helper.createLabel("4 Bed, 3.5 Bath", 14, 90, 660, 300, 100);
 		JLabel tampaPriceLabel = Helper.createLabel("$499/night", 14, 90, 680, 300, 100);

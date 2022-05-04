@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -118,6 +119,14 @@ public class Helper {
  		field.setFont(new Font("Tahoma", Font.PLAIN, fontSize));
  		field.setBounds(x, y, w, h);
  		return field;
+ 	}
+ 	
+ 	public static JTextArea createTextArea(String text, int fontSize, int x, int y, int w, int h) {
+ 		JTextArea area = new JTextArea();
+ 		area.setText(text);
+ 		area.setFont(new Font("Tahoma", Font.PLAIN, fontSize));
+ 		area.setBounds(x, y, w, h);
+ 		return area;
  	}
  	
  	public static Image fetchImage(String url, int w, int h) {
