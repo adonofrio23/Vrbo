@@ -1,6 +1,8 @@
 package server;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -73,6 +76,7 @@ public class ServerWindow {
 		bottomQuadL.setBackground(Color.WHITE);
 		ServerWindow.add(bottomQuadL);
 		
+		
 		//
 		//Bottom Quadrant Right - Users
 		//
@@ -82,8 +86,7 @@ public class ServerWindow {
 		bottomQuadR.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		bottomQuadR.setBackground(Color.WHITE);
 		ServerWindow.add(bottomQuadR);
-		
-		
+
 		//
 		// BOTTOM - available text area
 		//

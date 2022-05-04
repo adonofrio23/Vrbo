@@ -23,6 +23,8 @@ public class Server implements Runnable {
 	private static ServerSocket _sSocket = null;
 	private int _connections = 0;
 	
+	private int numLines = 1;
+	
 	Server(Socket sock) {
 		socket = sock;
 	}
@@ -135,16 +137,32 @@ public class Server implements Runnable {
 		try {
 			boolean sessionDone = false;
 			if (socket != null && socket.isConnected())
-				ServerWindow.bottomQuadL.append("Client Connected: " + socket.getInetAddress().toString().replace("/", "") + "\n");
+				
+				if (numLines >= 12)
+				{
+					ServerWindow.bottomQuadL.setText(""); 
+					numLines = 0;
+				}
+			
+			ServerWindow.bottomQuadL.append("Client Connected: " + socket.getInetAddress().toString().replace("/", "") + "\n");
 			_connections++;
 			ServerWindow.bottomQuadL.append("Current # of connections: " + _connections + "\n");
+			numLines = numLines + 2;
 			
 			BufferedReader rstream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
 			while (!sessionDone) {
 				if (rstream.ready()) {
 					String message = readMessage(rstream);
+					
+					if (numLines >= 12)
+					{
+						ServerWindow.bottomQuadL.setText(""); 
+						numLines = 0;
+					}
+						
 					ServerWindow.bottomQuadL.append(message + "\n");
+					numLines++;
 					
 					if (message.toLowerCase().contains("quit"))
 						sessionDone = true;
