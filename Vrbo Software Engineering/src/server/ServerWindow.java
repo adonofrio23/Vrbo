@@ -4,21 +4,32 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import app.Helper;
+import app.ListPropertyPage;
+import app.ViewManager;
 
 public class ServerWindow {
 	public static JPanel ServerWindow = null;
@@ -44,6 +55,69 @@ public class ServerWindow {
 		top.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		top.setBackground(Color.WHITE);
 		ServerWindow.add(top);
+		
+		// Instantiating Profit Bar Chart
+		
+		JButton listings = new JButton("Total Listings Per Month");
+		listings.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		listings.setForeground(Color.decode("#0e214b"));
+		listings.setBounds(125, 200, 300, 50);
+		Border emptyBorder = BorderFactory.createEmptyBorder();
+		listings.setBorder(emptyBorder);
+		listings.setBorder(BorderFactory.createLineBorder(Color.decode("#0e214b")));
+		listings.setForeground(Color.decode("#0e214b"));
+		
+		listings.addMouseListener(new MouseAdapter() {
+	         Color color = listings.getForeground();
+	         public void mouseEntered(MouseEvent me) {
+	            color = listings.getForeground();
+	            listings.setForeground(Color.GRAY); // change the color to green when mouse over a button
+	            listings.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+	         }
+	         public void mouseExited(MouseEvent me) {
+	            listings.setForeground(color);
+	            listings.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+	         }
+	      });
+		
+		listings.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+				frame.setSize(1050, 1000);
+				int[] value = new int[5];
+				String[] months = new String[5];
+				
+				value[0] = 7;
+				months[0] = ("January: " + value[0]*100);
+				
+				value[1] = 5;
+				months[1] = ("February: " + value[1]*100);
+				
+				value[2] = 6;
+				months[2] = ("March: " + value[2]*100);
+				
+				value[3] = 9;
+				months[3] = ("April: " + value[3]*100);
+				
+				// Add number of listings dynamically to May
+				value[4] = 7;
+				months[4] = ("May: " + value[4]*100);
+				  
+				frame.getContentPane().add(new BarChart(value, months, "Total Listings Per Month for 2022"));
+				
+				
+				WindowListener winListener = new WindowAdapter() 
+				{
+				
+					public void windowClosing(WindowEvent event) 
+					{
+
+					}}; 
+					frame.addWindowListener(winListener);
+					frame.setVisible(true);
+				} 
+		});  
+		ServerWindow.add(listings); 
 		
 		//
 		// Top Quadrant Left - Listings

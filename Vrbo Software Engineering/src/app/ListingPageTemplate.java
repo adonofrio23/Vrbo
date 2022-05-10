@@ -20,6 +20,7 @@ private static String location;
 		ListingPage.setBackground(Color.decode("#0e214b"));
 		ListingPageTemplate.data = data;
 		ListingPageTemplate.location = location;
+
 		createHeaderBar();
 		createBody();
 	}
@@ -84,23 +85,28 @@ private static String location;
 		JLabel about = Helper.createLabel("About This Rental", 28, 650, 250, 300, 40);
 		JTextArea description = Helper.createTextArea(ListingsByLocation.parse(data, "description"), 20, 650, 325, 420, 150);
 
+
 		description.setBackground(Color.WHITE);
 		
 		
 		JButton book = Helper.createButton("Book", 40, 800, 500, 150, 100);
+
 		
 		book.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
 				
 			String location = ""; //pull
 				SocketUtils.sendBookMessage("BOOKING=\"New Booking in\": \"" + location);
+
 				String validation = SocketUtils.receiveMessage();
 				
 				if (validation.equals("INVALID")) {
 					String[] options = {"OK"};
 					JOptionPane.showOptionDialog(
 		 					null, 
+
 		 					"Error: Invalid booking", // Exit message
+
 		 					"VRBO Client",  // Pop-Up Window title
 		 					JOptionPane.PLAIN_MESSAGE,
 		                    JOptionPane.QUESTION_MESSAGE,
@@ -109,7 +115,9 @@ private static String location;
 		                    options[0]
 		 			);
 				} else if (validation.equals("VALID")) {
+
 					SocketUtils.sendMessage("Booking Successfully Made");
+
 				} else if (validation.equals("ERROR")) {
 					Window.frame.dispose();
 				} else {
@@ -117,9 +125,14 @@ private static String location;
 					Window.frame.dispose();
 				}
 			} 
+
+
+		ListingPage.add(location);
+
 		}); 
 
 		ListingPage.add(locationLabel);
+
 		ListingPage.add(locationPic);
 		ListingPage.add(address);
 		ListingPage.add(beds);
