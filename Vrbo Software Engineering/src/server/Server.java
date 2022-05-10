@@ -169,14 +169,14 @@ public class Server implements Runnable {
 				if (rstream.ready()) {
 					String message = readMessage(rstream);
 					
+					ServerWindow.bottomQuadL.append(message + "\n");
+					numLines++;
+					
 					if (numLines >= 12)
 					{
 						ServerWindow.bottomQuadL.setText(""); 
 						numLines = 0;
 					}
-						
-					ServerWindow.bottomQuadL.append(message + "\n");
-					numLines++;
 					
 					if (message.toLowerCase().contains("quit"))
 						sessionDone = true;
