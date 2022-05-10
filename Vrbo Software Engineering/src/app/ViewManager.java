@@ -29,6 +29,12 @@ public class ViewManager {
 			addPage(name, page);
 		}
 		
+		if (Pages.containsKey("Listing")) {
+			Container.remove(Pages.get("Listing"));
+			Pages.remove("Listing");
+			addPage(name, page);
+		}
+		
 		if (!Pages.containsKey(name)) {
 			addPage(name, page);
 		}

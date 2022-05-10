@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -83,7 +82,8 @@ public class ListingsByLocation {
 		rental1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-					//bring you to the listing page of that property	
+				new ListingPageTemplate(list1Data, location);
+				ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);	
 			}
 		});
 		
@@ -93,7 +93,8 @@ public class ListingsByLocation {
 		rental2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-					
+					new ListingPageTemplate(list2Data, location);
+					ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);
 			}
 		});
 		
@@ -104,7 +105,8 @@ public class ListingsByLocation {
 		rental3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				
+				new ListingPageTemplate(list3Data, location);
+				ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);
 			}
 		});
 		
@@ -149,7 +151,7 @@ public class ListingsByLocation {
 		return data;
 	}
 	
-	private static String parse(String input, String target) {
+	public static String parse(String input, String target) {
 		int offset = target.length();
 		int index = input.indexOf(target) + offset;
 		String val = "";
