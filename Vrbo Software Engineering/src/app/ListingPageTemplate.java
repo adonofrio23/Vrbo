@@ -1,28 +1,26 @@
 package app;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.EtchedBorder;
 
 public class ListingPageTemplate {
 public static JPanel ListingPage = null;
+private static String data;
+private static String location;
 	
-	ListingPageTemplate() {
+	ListingPageTemplate(String data, String location) {
 		ListingPage = new JPanel(null);
 		ListingPage.setName("Listing Page");
 		ListingPage.setBackground(Color.decode("#0e214b"));
+		ListingPageTemplate.data = data;
+		ListingPageTemplate.location = location;
+
 		createHeaderBar();
 		createBody();
 	}
@@ -50,39 +48,65 @@ public static JPanel ListingPage = null;
 	}
 	
 	private void createBody() {
+		String locationImageURL = "";
 		
-		JLabel location = Helper.createLabel("Tampa Bay, Florida", 36, 100, 180, 400, 50);
+
+		String addressSt = ""; //pull
+		String bedSt = ""; //pull
+		String bathsSt = ""; //pull
+		String priceSt = ""; //pull
+		String textSt = ""; //pull
+		
+		JLabel locationLabel = Helper.createLabel("Tampa Bay, Florida", 36, 100, 180, 400, 50);
 		
 		JLabel locationPic = Helper.createLabel("", 20, 100, 250, 450, 350);
-		Image locationImage = Helper.fetchImage("https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fGx1eHVyeSUyMGFwYXJ0bWVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60", 300, 225).getScaledInstance(450, 350, Image.SCALE_DEFAULT);;
+		Image locationImage = Helper.fetchImage(locationImageURL, 300, 225).getScaledInstance(450, 350, Image.SCALE_DEFAULT);;
 		locationPic.setIcon(new ImageIcon(locationImage));
 		
-		JLabel address = Helper.createLabel("Enter Address Here", 28, 100, 580, 300, 100);
-		JLabel beds = Helper.createLabel("4 Bed", 24, 100, 620, 300, 100);
-		JLabel baths = Helper.createLabel("3.5 bath", 24, 100, 660, 300, 100);
-		JLabel price = Helper.createLabel("$10", 24, 100, 700, 300, 100);
+		JLabel address = Helper.createLabel(addressSt, 28, 100, 580, 300, 100);
+		JLabel beds = Helper.createLabel(bedSt, 24, 100, 620, 300, 100);
+		JLabel baths = Helper.createLabel(bathsSt, 24, 100, 660, 300, 100);
+		JLabel price = Helper.createLabel(priceSt, 24, 100, 700, 300, 100);
 		
 		JLabel about = Helper.createLabel("About This Rental", 28, 650, 250, 300, 40);
-		JTextArea description = Helper.createTextArea("", 20, 650, 325, 420, 150);
+		JTextArea description = Helper.createTextArea(textSt, 20, 650, 325, 420, 150);
+    
+		JLabel location = Helper.createLabel(ListingPageTemplate.location, 36, 100, 180, 400, 50);
+		
+		JLabel locationPic = Helper.createLabel("", 20, 100, 250, 450, 350);
+		Image locationImage = Helper.fetchImage(ListingsByLocation.parse(data, "link"), 300, 225).getScaledInstance(450, 350, Image.SCALE_DEFAULT);;
+		locationPic.setIcon(new ImageIcon(locationImage));
+		
+		JLabel address = Helper.createLabel(ListingsByLocation.parse(data, "address"), 28, 100, 580, 300, 100);
+		JLabel beds = Helper.createLabel(ListingsByLocation.parse(data, "beds") + " Beds", 24, 100, 620, 300, 100);
+		JLabel baths = Helper.createLabel(ListingsByLocation.parse(data, "baths") + " Baths", 24, 100, 660, 300, 100);
+		JLabel price = Helper.createLabel("$" + ListingsByLocation.parse(data, "price"), 24, 100, 700, 300, 100);
+		
+		JLabel about = Helper.createLabel("About This Rental", 28, 650, 250, 300, 40);
+		JTextArea description = Helper.createTextArea(ListingsByLocation.parse(data, "description"), 20, 650, 325, 420, 150);
+
+
 		description.setBackground(Color.WHITE);
 		
 		
 		JButton book = Helper.createButton("Book", 40, 800, 500, 150, 100);
-		/*
+
+		
 		book.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
 				
-				String username = usernameInput.getText();
-				String password = passwordInput.getText();
-				
-				SocketUtils.sendMessage("LOGIN=\"username\": \"" + username + "\", \"password\": \"" + password + "\"");
+			String location = ""; //pull
+				SocketUtils.sendBookMessage("BOOKING=\"New Booking in\": \"" + location);
+
 				String validation = SocketUtils.receiveMessage();
 				
 				if (validation.equals("INVALID")) {
 					String[] options = {"OK"};
 					JOptionPane.showOptionDialog(
 		 					null, 
-		 					"Error: Invalid Username or Password", // Exit message
+
+		 					"Error: Invalid booking", // Exit message
+
 		 					"VRBO Client",  // Pop-Up Window title
 		 					JOptionPane.PLAIN_MESSAGE,
 		                    JOptionPane.QUESTION_MESSAGE,
@@ -91,9 +115,9 @@ public static JPanel ListingPage = null;
 		                    options[0]
 		 			);
 				} else if (validation.equals("VALID")) {
-					SocketUtils.sendMessage("User Successfully Logged In: " + username + " / " + password);
-					usernameInput.setText("");
-					passwordInput.setText("");
+
+					SocketUtils.sendMessage("Booking Successfully Made");
+
 				} else if (validation.equals("ERROR")) {
 					Window.frame.dispose();
 				} else {
@@ -101,9 +125,14 @@ public static JPanel ListingPage = null;
 					Window.frame.dispose();
 				}
 			} 
-		}); */
+
 
 		ListingPage.add(location);
+
+		}); 
+
+		ListingPage.add(locationLabel);
+
 		ListingPage.add(locationPic);
 		ListingPage.add(address);
 		ListingPage.add(beds);

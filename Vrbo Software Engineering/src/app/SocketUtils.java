@@ -11,7 +11,7 @@ public class SocketUtils {
 	static Socket clientSocket = null;
     static DataOutputStream outToServer = null;
     static BufferedReader inFromServer = null;
-    static final String ip = "10.101.21.115";
+    static final String ip = "10.88.11.12";
 	static final int port = 4545;
 	static boolean socketConnected = false;
     
@@ -57,6 +57,18 @@ public class SocketUtils {
     		return false;
     	}
     }
+    
+    public static boolean sendBookMessage(String b) {
+    	try {
+    		outToServer.writeBytes(b + "\r\n");
+    		return true;
+    	} catch (IOException e) {
+    		System.out.println("[Error] - " + e.getMessage());
+    		return false;
+    	}
+    }
+    
+    
     
     public static String receiveMessage() {
     	String message = null;

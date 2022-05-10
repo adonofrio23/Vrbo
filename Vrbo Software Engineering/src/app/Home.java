@@ -107,7 +107,20 @@ public class Home {
 //		searchBG.setIcon(new ImageIcon(searchBGImage));
 //		searchBG.setBounds(90, 90, 1000, 300);
 		
-		
+		pressSearch.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				String location = search.getSelectedItem().toString();
+				if (ViewManager.Pages.containsKey("Listings")) {
+					ViewManager.switchPage("Listings", ViewManager.Pages.get("Listings"));
+				} else {
+					SocketUtils.sendMessage("FETCHALL=\"city\": \"" + search.getSelectedItem().toString()
+											+ "\", \"beds\": \"" + beds.getText() + "\"");
+					String data = SocketUtils.receiveMessage();
+					new ListingsByLocation(location, data);
+					ViewManager.switchPage("Listings", ListingsByLocation.ListingsByLocation);
+				}
+			}
+		});
 		
 		HomePage.add(optionMenu);
 		HomePage.add(search);
@@ -154,11 +167,10 @@ JLabel popListingLabel = Helper.createLabel("New Listings", 30, 500, 390, 200, 3
 		
 		sanDiego.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
-				if (ViewManager.Pages.containsKey("Listing Page")) {
-					ViewManager.switchPage("Listing Page", ViewManager.Pages.get("Listing Page"));
+				if (ViewManager.Pages.containsKey("Listing")) {
+					ViewManager.switchPage("Listing", ViewManager.Pages.get("Listing"));
 				} else {
-					new ListingPageTemplate();
-					ViewManager.switchPage("Listing Page", ListingPageTemplate.ListingPage);
+					
 				}
 			}
 		});
