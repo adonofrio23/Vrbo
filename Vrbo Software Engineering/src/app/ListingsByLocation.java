@@ -28,24 +28,26 @@ public class ListingsByLocation {
 	}
 	
 	void createHeaderBar(String loc){
-		
-		JButton exitButton = Helper.createButton("Exit", 16, 1070, 15, 80, 80);
+		JButton exitButton = Helper.createButton("Exit", 16, 1010, 90, 100, 30);		
 		exitButton.addActionListener(new Helper.ExitPrompt()); // Pop-Up Window Functionality
-		JButton homeButton = Helper.createButton("Home Page", 16, 870, 15, 150, 80);
+		JButton homeButton = Helper.createButton("Home", 16, 900, 90, 100, 30);
 		homeButton.addActionListener(new Helper.HomeListener());
 		
-		JLabel slogan = Helper.createLabel("  Travel Better Together", 20, 250, 15, 230, 80);
-		slogan.setBorder(BorderFactory.createLineBorder(Color.black));
 		
+		JLabel slogan = Helper.createLabel("Travel Better Together", 20, 130, 90, 300, 30);
+		slogan.setForeground(Color.WHITE);
 		JLabel logo = new JLabel();
+		//Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
 		Image vrboLogo = Helper.fetchImage("https://csvcus.homeaway.com/rsrcs-crs/cdn-logos/5.1.2/sitename/vrbo/web/image_src.png", 150, 80);
 		logo.setIcon(new ImageIcon(vrboLogo));
-		logo.setBounds(50, 15, 150, 80);
+		logo.setBounds(5, 0, 150, 200);
 		
 		ListingsByLocation.add(exitButton);
 		ListingsByLocation.add(homeButton);
 		ListingsByLocation.add(slogan);
 		ListingsByLocation.add(logo);
+		
+		
 	}
 	
 	void createBody(String loc){
@@ -108,15 +110,15 @@ public class ListingsByLocation {
 		
 		
 		
-		JLabel rental1location = Helper.createLabel(loc, 16, 90, 640, 300, 100);
-		JLabel rental1bedbath = Helper.createLabel(bed1+ " " + bath1, 14, 90, 660, 300, 100);
-		JLabel rental1price = Helper.createLabel(price1, 14, 90, 680, 300, 100);
-		JLabel rental2location = Helper.createLabel(loc, 16, 440, 640, 300, 100);
-		JLabel rental2bedbath = Helper.createLabel(bed2+ " " + bath2, 14, 440, 660, 300, 100);
-		JLabel rental2price = Helper.createLabel(price2, 14, 440, 680, 300, 100);
-		JLabel rental3location = Helper.createLabel(loc, 16, 790, 640, 300, 100);
-		JLabel rental3bedbath = Helper.createLabel(bed3+ " " + bath3, 14, 790, 660, 300, 100);
-		JLabel rental3price = Helper.createLabel(price3, 14, 790, 680, 300, 100);
+		JLabel rental1location = Helper.createLabel(loc, 16, 90, 540, 300, 100);
+		JLabel rental1bedbath = Helper.createLabel(bed1+ " " + bath1, 14, 90, 560, 300, 100);
+		JLabel rental1price = Helper.createLabel(price1, 14, 90, 580, 300, 100);
+		JLabel rental2location = Helper.createLabel(loc, 16, 440, 540, 300, 100);
+		JLabel rental2bedbath = Helper.createLabel(bed2+ " " + bath2, 14, 440, 560, 300, 100);
+		JLabel rental2price = Helper.createLabel(price2, 14, 440, 580, 300, 100);
+		JLabel rental3location = Helper.createLabel(loc, 16, 790, 540, 300, 100);
+		JLabel rental3bedbath = Helper.createLabel(bed3+ " " + bath3, 14, 790, 560, 300, 100);
+		JLabel rental3price = Helper.createLabel(price3, 14, 790, 580, 300, 100);
 		
 		ListingsByLocation.add(rental1);
 		ListingsByLocation.add(rental2);
