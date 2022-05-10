@@ -108,14 +108,16 @@ public class Home {
 //		searchBG.setBounds(90, 90, 1000, 300);
 		
 		pressSearch.addActionListener(new ActionListener() {
-		@Override public void actionPerformed(ActionEvent e) {
-			String location = search.getSelectedItem().toString();
-			System.out.print("Searching by location..");
-			if (ViewManager.Pages.containsKey("Listings")) {
-				ViewManager.switchPage("Listings", ViewManager.Pages.get("Listings"));
-			} else {
-				new ListingsByLocation(location);
-				ViewManager.switchPage("Listings", ListingsByLocation.ListingsByLocation);
+			@Override public void actionPerformed(ActionEvent e) {
+				String location = search.getSelectedItem().toString();
+				if (ViewManager.Pages.containsKey("Listings")) {
+					ViewManager.switchPage("Listings", ViewManager.Pages.get("Listings"));
+				} else {
+					SocketUtils.sendMessage("FETCHALL=\"city\": \"" + search.getSelectedItem().toString()
+											+ "\", \"beds\": \"" + beds.getText() + "\"");
+					String data = SocketUtils.receiveMessage();
+					new ListingsByLocation(location, data);
+					ViewManager.switchPage("Listings", ListingsByLocation.ListingsByLocation);
 				}
 			}
 		});

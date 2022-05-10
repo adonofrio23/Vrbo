@@ -200,6 +200,12 @@ public class Server implements Runnable {
 						ListProperty.list(address, beds, baths, amenities, description, price, city, pic);
 					}
 					
+					if (message.startsWith("FETCHALL=")) {
+						String location = parse("city", message);
+						String beds = parse("beds", message);
+						GetListings.getListing(location, beds);
+					}
+					
 				}
 				Thread.sleep(500);
 			}
