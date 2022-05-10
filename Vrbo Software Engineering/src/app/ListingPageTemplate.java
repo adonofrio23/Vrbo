@@ -2,10 +2,13 @@ package app;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -57,21 +60,8 @@ private static String location;
 		String priceSt = ""; //pull
 		String textSt = ""; //pull
 		
-		JLabel locationLabel = Helper.createLabel("Tampa Bay, Florida", 36, 100, 180, 400, 50);
 		
-		JLabel locationPic = Helper.createLabel("", 20, 100, 250, 450, 350);
-		Image locationImage = Helper.fetchImage(locationImageURL, 300, 225).getScaledInstance(450, 350, Image.SCALE_DEFAULT);;
-		locationPic.setIcon(new ImageIcon(locationImage));
-		
-		JLabel address = Helper.createLabel(addressSt, 28, 100, 580, 300, 100);
-		JLabel beds = Helper.createLabel(bedSt, 24, 100, 620, 300, 100);
-		JLabel baths = Helper.createLabel(bathsSt, 24, 100, 660, 300, 100);
-		JLabel price = Helper.createLabel(priceSt, 24, 100, 700, 300, 100);
-		
-		JLabel about = Helper.createLabel("About This Rental", 28, 650, 250, 300, 40);
-		JTextArea description = Helper.createTextArea(textSt, 20, 650, 325, 420, 150);
-    
-		JLabel location = Helper.createLabel(ListingPageTemplate.location, 36, 100, 180, 400, 50);
+		JLabel locationLabel = Helper.createLabel(ListingPageTemplate.location, 36, 100, 180, 400, 50);
 		
 		JLabel locationPic = Helper.createLabel("", 20, 100, 250, 450, 350);
 		Image locationImage = Helper.fetchImage(ListingsByLocation.parse(data, "link"), 300, 225).getScaledInstance(450, 350, Image.SCALE_DEFAULT);;
@@ -127,12 +117,11 @@ private static String location;
 			} 
 
 
-		ListingPage.add(location);
+		//ListingPage.add(location);
 
 		}); 
 
 		ListingPage.add(locationLabel);
-
 		ListingPage.add(locationPic);
 		ListingPage.add(address);
 		ListingPage.add(beds);
