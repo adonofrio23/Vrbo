@@ -167,11 +167,10 @@ JLabel popListingLabel = Helper.createLabel("New Listings", 30, 500, 390, 200, 3
 		
 		sanDiego.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
-				if (ViewManager.Pages.containsKey("Listing Page")) {
-					ViewManager.switchPage("Listing Page", ViewManager.Pages.get("Listing Page"));
+				if (ViewManager.Pages.containsKey("Listing")) {
+					ViewManager.switchPage("Listing", ViewManager.Pages.get("Listing"));
 				} else {
-					new ListingPageTemplate();
-					ViewManager.switchPage("Listing Page", ListingPageTemplate.ListingPage);
+					
 				}
 			}
 		});
