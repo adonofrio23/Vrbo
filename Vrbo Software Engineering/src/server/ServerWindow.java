@@ -121,11 +121,12 @@ public class ServerWindow {
 		exitButton.setBounds(4, 620, 133, 30);;
 		ServerWindow.add(exitButton);
 		bottomQuadL.append("Server started on: " + Server.ip + ":" + Server.port + "\n");
-		top.setBackground(Color.decode("#fbff91"));
+		bottomQuadR.append("Real Time Bookings\n");
+		top.setBackground(Color.decode("#0e214b"));
 		JLabel logo = new JLabel();
 	    Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
 	    logo.setIcon(new ImageIcon(vrboLogo));
-	    logo.setBounds(421, 10, 200, 50);
+	    logo.setBounds(421, 18, 200, 50);
 	    top.add(logo);
 	}
 }
