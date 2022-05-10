@@ -133,6 +133,9 @@ public class Server implements Runnable {
 		pstream.println(message);
 	}
 	
+	
+	
+	
 	public void run() {
 		try {
 			boolean sessionDone = false;
@@ -143,7 +146,14 @@ public class Server implements Runnable {
 					ServerWindow.bottomQuadL.setText(""); 
 					numLines = 0;
 				}
+		
 			
+			
+			//Show Bookings when Book is clicked on client side
+			
+			
+			
+			// Checking Users logged in 
 			ServerWindow.bottomQuadL.append("Client Connected: " + socket.getInetAddress().toString().replace("/", "") + "\n");
 			_connections++;
 			ServerWindow.bottomQuadL.append("Current # of connections: " + _connections + "\n");
@@ -200,10 +210,16 @@ public class Server implements Runnable {
 						ListProperty.list(address, beds, baths, amenities, description, price, city, pic);
 					}
 					
+
+					if (message.startsWith("BOOKING=")) {
+						String location = parse("location", message);
+						ServerWindow.bottomQuadR.append(location);
+
 					if (message.startsWith("FETCHALL=")) {
 						String location = parse("city", message);
 						String beds = parse("beds", message);
 						GetListings.getListing(location, beds);
+
 					}
 					
 				}

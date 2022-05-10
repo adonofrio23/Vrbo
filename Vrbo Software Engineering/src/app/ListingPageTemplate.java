@@ -47,7 +47,29 @@ private static String location;
 	}
 	
 	private void createBody() {
+		String locationImageURL = "";
 		
+
+		String addressSt = ""; //pull
+		String bedSt = ""; //pull
+		String bathsSt = ""; //pull
+		String priceSt = ""; //pull
+		String textSt = ""; //pull
+		
+		JLabel locationLabel = Helper.createLabel("Tampa Bay, Florida", 36, 100, 180, 400, 50);
+		
+		JLabel locationPic = Helper.createLabel("", 20, 100, 250, 450, 350);
+		Image locationImage = Helper.fetchImage(locationImageURL, 300, 225).getScaledInstance(450, 350, Image.SCALE_DEFAULT);;
+		locationPic.setIcon(new ImageIcon(locationImage));
+		
+		JLabel address = Helper.createLabel(addressSt, 28, 100, 580, 300, 100);
+		JLabel beds = Helper.createLabel(bedSt, 24, 100, 620, 300, 100);
+		JLabel baths = Helper.createLabel(bathsSt, 24, 100, 660, 300, 100);
+		JLabel price = Helper.createLabel(priceSt, 24, 100, 700, 300, 100);
+		
+		JLabel about = Helper.createLabel("About This Rental", 28, 650, 250, 300, 40);
+		JTextArea description = Helper.createTextArea(textSt, 20, 650, 325, 420, 150);
+    
 		JLabel location = Helper.createLabel(ListingPageTemplate.location, 36, 100, 180, 400, 50);
 		
 		JLabel locationPic = Helper.createLabel("", 20, 100, 250, 450, 350);
@@ -61,25 +83,24 @@ private static String location;
 		
 		JLabel about = Helper.createLabel("About This Rental", 28, 650, 250, 300, 40);
 		JTextArea description = Helper.createTextArea(ListingsByLocation.parse(data, "description"), 20, 650, 325, 420, 150);
+
 		description.setBackground(Color.WHITE);
 		
 		
 		JButton book = Helper.createButton("Book", 40, 800, 500, 150, 100);
-		/*
+		
 		book.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
 				
-				String username = usernameInput.getText();
-				String password = passwordInput.getText();
-				
-				SocketUtils.sendMessage("LOGIN=\"username\": \"" + username + "\", \"password\": \"" + password + "\"");
+			String location = ""; //pull
+				SocketUtils.sendBookMessage("BOOKING=\"New Booking in\": \"" + location);
 				String validation = SocketUtils.receiveMessage();
 				
 				if (validation.equals("INVALID")) {
 					String[] options = {"OK"};
 					JOptionPane.showOptionDialog(
 		 					null, 
-		 					"Error: Invalid Username or Password", // Exit message
+		 					"Error: Invalid booking", // Exit message
 		 					"VRBO Client",  // Pop-Up Window title
 		 					JOptionPane.PLAIN_MESSAGE,
 		                    JOptionPane.QUESTION_MESSAGE,
@@ -88,9 +109,7 @@ private static String location;
 		                    options[0]
 		 			);
 				} else if (validation.equals("VALID")) {
-					SocketUtils.sendMessage("User Successfully Logged In: " + username + " / " + password);
-					usernameInput.setText("");
-					passwordInput.setText("");
+					SocketUtils.sendMessage("Booking Successfully Made");
 				} else if (validation.equals("ERROR")) {
 					Window.frame.dispose();
 				} else {
@@ -98,9 +117,9 @@ private static String location;
 					Window.frame.dispose();
 				}
 			} 
-		}); */
+		}); 
 
-		ListingPage.add(location);
+		ListingPage.add(locationLabel);
 		ListingPage.add(locationPic);
 		ListingPage.add(address);
 		ListingPage.add(beds);
