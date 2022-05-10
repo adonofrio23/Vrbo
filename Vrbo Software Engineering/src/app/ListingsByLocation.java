@@ -12,20 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ListingsByLocation {
-	//If statement - search by location
-	//If location = Tampa
-		//populate Tampa listings
-	//If location = NY
-		//populate with NY listings
-	//If location = Denver
-		//populate with Denver listings
-	//If location = LA
-		//populate with LA listings
 	
-	//variables for:
-		//location
-		//button - picture of listing
-	//construct a 
 	
 	String location;
 	
