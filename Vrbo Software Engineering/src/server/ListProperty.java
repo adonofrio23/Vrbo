@@ -8,6 +8,8 @@ import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
 import com.google.cloud.firestore.SetOptions;
 import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.storage.Acl;
+import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Bucket;
@@ -20,9 +22,10 @@ public class ListProperty {
 		String fileName = address + ".png";
 		BlobId blobId = BlobId.of("vrbo-server.appspot.com", fileName);
 		BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("png").setContentEncoding("utf-8").build();
-		String link = null;
+		String link = "https://storage.googleapis.com/vrbo-server.appspot.com/" + fileName.replaceAll(" ", "%20");
 		try {
-			link = bucket.getStorage().create(blobInfo, picture).getMediaLink();
+			Blob blob = bucket.getStorage().create(blobInfo, picture);
+			blob.createAcl(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER));
 		} catch (StorageException e) {
 			e.printStackTrace();
 		}

@@ -12,13 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ListingsByLocation {
-	
-	
 	String location;
+	String data;
 	
 	static JPanel ListingsByLocation = null;
 	
-	ListingsByLocation(String loc){
+	ListingsByLocation(String loc, String data){
+		this.data = data;
 		location = loc;
 		ListingsByLocation = new JPanel(null);
 		ListingsByLocation.setName("Listings");
@@ -51,23 +51,31 @@ public class ListingsByLocation {
 	}
 	
 	void createBody(String loc){
-			
-		String listing1ImageURL = "https://media.vrbo.com/lodging/27000000/26940000/26935300/26935215/cf1683d9.f10.jpg";
-		String listing2ImageURL = "https://media.vrbo.com/lodging/27000000/26940000/26935300/26935215/cf1683d9.f10.jpg";
-		String listing3ImageURL = "https://media.vrbo.com/lodging/27000000/26940000/26935300/26935215/cf1683d9.f10.jpg";
+		String[] dataArr = splitData(data);
+		String list1Data = dataArr[0];
+		String list2Data = dataArr[1];
+		String list3Data = dataArr[2];
+		
+	
+		String listing1ImageURL = parse(list1Data, "link");
+		String listing2ImageURL = parse(list2Data, "link");
+		String listing3ImageURL = parse(list3Data, "link");
+		System.out.println(listing1ImageURL);
+		System.out.println(listing2ImageURL);
+		System.out.println(listing3ImageURL);
 		
 		
-		String bed1 = "1";
-		String bath1 = "1";
-		String price1 = "1"; 
+		String bed1 = parse(list1Data, "beds");
+		String bath1 = parse(list1Data, "baths");
+		String price1 = parse(list1Data, "price"); 
 		
-		String bed2 = "1";
-		String bath2 = "1";
-		String price2 = "1";
+		String bed2 = parse(list2Data, "beds");
+		String bath2 = parse(list2Data, "baths");
+		String price2 = parse(list2Data, "price");
 		
-		String bed3 = "1";
-		String bath3 = "1";
-		String price3 = "1";
+		String bed3 = parse(list3Data, "beds");
+		String bath3 = parse(list3Data, "baths");
+		String price3 = parse(list3Data, "price");
 		
 		JButton rental1 = Helper.createButton("", 16, 90, 300, 300, 225);
 		Image rental1image = Helper.fetchImage(listing1ImageURL, 300, 225);
@@ -92,7 +100,7 @@ public class ListingsByLocation {
 		
 		JButton rental3 = Helper.createButton("", 16, 790, 300, 300, 225);
 		Image rental3image = Helper.fetchImage(listing3ImageURL, 300, 225);
-		rental3.setIcon(new ImageIcon(rental2image));
+		rental3.setIcon(new ImageIcon(rental3image));
 		rental3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
@@ -126,6 +134,36 @@ public class ListingsByLocation {
 		ListingsByLocation.add(rental3bedbath);
 		ListingsByLocation.add(rental3price);
 				
+	}
+	
+	private static String[] splitData(String input) {
+		String[] data = new String[3];
+		int cur = 0;
+		for (int i = 0, j = 0; i < input.length(); i++) {
+			if (input.charAt(i) == '+' && j < 3) {
+				data[j] = input.substring(cur, i);
+				cur = i + 1;
+				j++;
+			}
+		}
+		return data;
+	}
+	
+	private static String parse(String input, String target) {
+		int offset = target.length();
+		int index = input.indexOf(target) + offset;
+		String val = "";
+
+		while (true) {
+			if (input.charAt(index) == ',' || index == input.length() - 1)
+				break;
+			
+			if (input.charAt(index) != '=')
+				val += input.charAt(index);
+			
+			index++;
+		}
+		return val.strip();
 	}
 }
 

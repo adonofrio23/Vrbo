@@ -23,8 +23,15 @@ public class ViewManager {
 	}
 	
 	public static void switchPage(String name, JPanel page) {
-		if (!Pages.containsKey(name))
+		if (Pages.containsKey("Listings")) {
+			Container.remove(Pages.get("Listings"));
+			Pages.remove("Listings");
 			addPage(name, page);
+		}
+		
+		if (!Pages.containsKey(name)) {
+			addPage(name, page);
+		}
 		
 		cards.show(Container, name);
 		System.out.println("[ViewManager] - Switch active page to " + name + ".");
