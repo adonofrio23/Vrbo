@@ -58,6 +58,18 @@ public class SocketUtils {
     	}
     }
     
+    public static boolean sendBookMessage(String b) {
+    	try {
+    		outToServer.writeBytes(b + "\r\n");
+    		return true;
+    	} catch (IOException e) {
+    		System.out.println("[Error] - " + e.getMessage());
+    		return false;
+    	}
+    }
+    
+    
+    
     public static String receiveMessage() {
     	String message = null;
     	
