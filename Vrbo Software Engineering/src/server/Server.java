@@ -12,11 +12,6 @@ import java.net.Socket;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.Border;
-
-import java.awt.event.*;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
@@ -137,9 +132,6 @@ public class Server implements Runnable {
 		}
 		pstream.println(message);
 	}
-	
-	
-	
 	
 	public void run() {
 		try {

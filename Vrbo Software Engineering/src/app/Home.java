@@ -182,10 +182,10 @@ public class Home {
 		JLabel list1bedbath = Helper.createLabel(ListingsByLocation.parse(list1Data, "beds") + ", " + ListingsByLocation.parse(list1Data, "baths"), 14, 90, 660, 300, 100);
 		JLabel list1price = Helper.createLabel("$" + ListingsByLocation.parse(list1Data, "price"), 14, 90, 680, 300, 100);
 		JLabel list2loc = Helper.createLabel(ListingsByLocation.parse(list2Data, "address"), 16, 440, 640, 300, 100);
-		JLabel list2bedbath = Helper.createLabel(ListingsByLocation.parse(list2Data, "beds") + ", " + ListingsByLocation.parse(list2Data, "baths"), 14, 440, 660, 300, 100);
+		JLabel list2bedbath = Helper.createLabel(ListingsByLocation.parse(list2Data, "beds") + " beds, " + ListingsByLocation.parse(list2Data, "baths") + " baths", 14, 440, 660, 300, 100);
 		JLabel list2price = Helper.createLabel("$" + ListingsByLocation.parse(list2Data, "price"), 14, 440, 680, 300, 100);
 		JLabel list3loc = Helper.createLabel(ListingsByLocation.parse(list3Data, "address"), 16, 790, 640, 300, 100);
-		JLabel list3bedbath = Helper.createLabel(ListingsByLocation.parse(list3Data, "beds") + ", " + ListingsByLocation.parse(list3Data, "baths"), 14, 790, 660, 300, 100);
+		JLabel list3bedbath = Helper.createLabel(ListingsByLocation.parse(list3Data, "beds") + " beds, " + ListingsByLocation.parse(list3Data, "baths") + " baths", 14, 790, 660, 300, 100);
 		JLabel list3price = Helper.createLabel("$" + ListingsByLocation.parse(list3Data, "price"), 14, 790, 680, 300, 100);
 		
 		HomePage.add(popListingLabel);
