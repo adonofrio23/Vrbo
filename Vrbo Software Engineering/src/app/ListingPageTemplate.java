@@ -74,8 +74,9 @@ private static String location;
 		
 		JLabel about = Helper.createLabel("About This Rental", 28, 650, 250, 300, 40);
 		JTextArea description = Helper.createTextArea(ListingsByLocation.parse(data, "description"), 20, 650, 325, 420, 150);
-
-
+		description.setEditable(false);	
+		description.setLineWrap(true);
+		description.setWrapStyleWord(true);
 		description.setBackground(Color.WHITE);
 		
 		
