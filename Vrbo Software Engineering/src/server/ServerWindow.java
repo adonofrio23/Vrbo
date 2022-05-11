@@ -2,12 +2,9 @@ package server;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -25,8 +22,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import app.Helper;
-import app.ListPropertyPage;
-import app.ViewManager;
 
 public class ServerWindow {
 	public static JPanel ServerWindow = null;
@@ -46,12 +41,6 @@ public class ServerWindow {
 		//
 		// TOP - available text area - has the real-time clock display for now
 		//
-		top = new JTextArea();
-		top.setEditable(false);
-		top.setBounds(15, 15, 1015, 90);
-		top.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-		top.setBackground(Color.WHITE);
-		ServerWindow.add(top);
 		
 		// Instantiating Total Listings Bar Chart
 		
@@ -227,15 +216,14 @@ public class ServerWindow {
 				}		
 			}
 		});
-		exitButton.setBounds(4, 580, 200, 50);;
+		exitButton.setBounds(25, 580, 200, 50);;
 		ServerWindow.add(exitButton);
 		bottomQuadL.append("Server started on: " + Server.ip + ":" + Server.port + "\n");
 		bottomQuadR.append("Real Time Bookings\n");
-		top.setBackground(Color.decode("#0e214b"));
 		JLabel logo = new JLabel();
-	    Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 150, 80);
+	    Image vrboLogo = Helper.fetchImage("https://images.ctfassets.net/uylld2rxwr0n/7H3jIk9OvCrmuFpSyUrkqq/b07aa3c9796d08f2773bc54c69c666d9/Vrbo_logo_dark.png?w=960&q=50", 300, 160);
 	    logo.setIcon(new ImageIcon(vrboLogo));
-	    logo.setBounds(421, 18, 200, 50);
-	    top.add(logo);
+	    logo.setBounds(375, 30, 400, 100);
+	    ServerWindow.add(logo);
 	}
 }
