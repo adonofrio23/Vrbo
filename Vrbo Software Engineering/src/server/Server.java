@@ -240,7 +240,8 @@ public class Server implements Runnable {
 
 					if (message.startsWith("BOOKING=")) {
 						String location = parse("location", message);
-						ServerWindow.bottomQuadR.append("New Booking: " + location + "\n");
+						String address = parse("address", message);
+						ServerWindow.bottomQuadR.append("New Booking in " + location + ": " + address + "\n");
 						sendMessage("BOOKED");
 					}
 					if (message.startsWith("FETCHALL=")) {

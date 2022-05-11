@@ -76,7 +76,7 @@ private static String location;
 		book.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
 				
-			SocketUtils.sendBookMessage("BOOKING=\"location\":" + "\"" + location + "\"");
+			SocketUtils.sendBookMessage("BOOKING=\"location\":" + "\"" + location + "\"" + "\"address\":" + "\"" + ListingsByLocation.parse(data, "address") + "\"");
 			String validation = SocketUtils.receiveMessage();
 				
 				if (validation.equals("INVALID")) {
