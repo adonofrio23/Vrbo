@@ -97,7 +97,7 @@ public class ServerWindow {
 				months[3] = ("April: " + value[3]*100);
 				
 				// Add number of listings dynamically to May
-				value[4] = 7;
+				value[4] = 0;
 				months[4] = ("May: " + value[4]*100);
 				  
 				frame.getContentPane().add(new BarChart(value, months, "Total Listings Per Month for 2022"));

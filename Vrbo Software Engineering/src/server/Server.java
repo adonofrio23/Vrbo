@@ -159,10 +159,23 @@ public class Server implements Runnable {
 			
 			
 			// Checking Users logged in 
+			
+			if (numLines >= 12)
+			{
+				ServerWindow.bottomQuadL.setText(""); 
+				numLines = 0;
+			}
+			
 			ServerWindow.bottomQuadL.append("Client Connected: " + socket.getInetAddress().toString().replace("/", "") + "\n");
 			_connections++;
 			ServerWindow.bottomQuadL.append("Current # of connections: " + _connections + "\n");
 			numLines = numLines + 2;
+			
+			if (numLines >= 12)
+			{
+				ServerWindow.bottomQuadL.setText(""); 
+				numLines = 0;
+			}
 			
 			BufferedReader rstream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			DataInputStream dIn = new DataInputStream(socket.getInputStream());
@@ -235,6 +248,13 @@ public class Server implements Runnable {
 					}
 					
 				}
+				
+				if (numLines >= 12)
+				{
+					ServerWindow.bottomQuadL.setText(""); 
+					numLines = 0;
+				}
+				
 				Thread.sleep(500);
 			}
 			
