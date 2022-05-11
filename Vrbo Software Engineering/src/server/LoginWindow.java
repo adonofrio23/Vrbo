@@ -1,5 +1,6 @@
 package server;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,14 +16,18 @@ public class LoginWindow {
 	
 	LoginWindow() {
 		LoginWindow = new JPanel(null);
+		LoginWindow.setBackground(Color.decode("#0e214b"));
 		LoginWindow.setName("Login");
 		createPage();
 	}
 	
 	private void createPage() {
 		JLabel login = createLabel("Log In", 40, 400, 100, 400, 100);
+		login.setForeground(Color.WHITE);
 		JLabel user = createLabel("Username", 30, 150, 200, 200, 80);
+		user.setForeground(Color.WHITE);
 		JLabel pass = createLabel("Password", 30, 150, 400, 200, 80);
+		pass.setForeground(Color.WHITE);
 		
 		JTextField usernameInput = createTextField(24, 350, 200, 200, 80);
 		JTextField passwordInput = createTextField(24, 350, 400, 200, 80);

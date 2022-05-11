@@ -31,18 +31,18 @@ import app.ViewManager;
 public class ServerWindow {
 	public static JPanel ServerWindow = null;
 	
-	
 	// global variables
 	public static JTextArea top;
-	public static JTextArea topQuadL;
-	public static JTextArea topQuadR;
 	public static JTextArea bottomQuadL;
 	public static JTextArea bottomQuadR;
-	public static JTextArea bottom;
 	
 	public ServerWindow() {
 		ServerWindow = new JPanel(null);
-		ServerWindow.setBorder(new TitledBorder(new EtchedBorder(), "Vrbo Socket Server"));
+		ServerWindow.setBackground(Color.decode("#0e214b"));
+		TitledBorder border = new TitledBorder(new EtchedBorder(), "Vrbo Socket Server");
+		border.setTitleColor(Color.WHITE);
+		ServerWindow.setBorder(border);
+		
 		//
 		// TOP - available text area - has the real-time clock display for now
 		//
@@ -57,13 +57,14 @@ public class ServerWindow {
 		
 		JButton listings = new JButton("Total Listings Per Month");
 		listings.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		listings.setForeground(Color.decode("#0e214b"));
+		listings.setForeground(Color.WHITE);
 		listings.setBounds(115, 150, 300, 50);
 		Border emptyBorder = BorderFactory.createEmptyBorder();
 		listings.setBorder(emptyBorder);
-		listings.setBorder(BorderFactory.createLineBorder(Color.decode("#0e214b")));
-		listings.setForeground(Color.decode("#0e214b"));
+		listings.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		listings.setForeground(Color.WHITE);
 		
+		/*
 		listings.addMouseListener(new MouseAdapter() {
 	         Color color = listings.getForeground();
 	         public void mouseEntered(MouseEvent me) {
@@ -75,7 +76,7 @@ public class ServerWindow {
 	            listings.setForeground(color);
 	            listings.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 	         }
-	      });
+	      }); */
 		
 		listings.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
@@ -119,12 +120,13 @@ public class ServerWindow {
 		// Instantiating Total Listings Bar Chart
 		JButton profit = new JButton("Total Profit Per Month");
 		profit.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		profit.setForeground(Color.decode("#0e214b"));
+		profit.setForeground(Color.WHITE);
 		profit.setBounds(115, 250, 300, 50);
 		profit.setBorder(emptyBorder);
-		profit.setBorder(BorderFactory.createLineBorder(Color.decode("#0e214b")));
-		profit.setForeground(Color.decode("#0e214b"));
+		profit.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		profit.setForeground(Color.WHITE);
 		
+		/*
 		profit.addMouseListener(new MouseAdapter() {
 			Color color = profit.getForeground();
 			public void mouseEntered(MouseEvent me) {
@@ -136,7 +138,7 @@ public class ServerWindow {
 				profit.setForeground(color);
 				profit.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 				}
-			});
+			}); */
 		
 		profit.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
@@ -179,21 +181,9 @@ public class ServerWindow {
 		int users = 0;
 		JLabel totalUsers = new JLabel("Total Users: " + users);
 		totalUsers.setFont(new Font("Tahoma", Font.PLAIN, 40));
- 		totalUsers.setForeground(Color.decode("#0e214b"));
+ 		totalUsers.setForeground(Color.WHITE);
  		totalUsers.setBounds(660, 200, 300, 50);
- 		ServerWindow.add(totalUsers);
-		
-		
-		//
-		// Top Quadrant Left - Total Listings and Total Profit Bar Graphs
-		//
-		topQuadL = new JTextArea();
-		topQuadL.setEditable(false);
-		topQuadL.setBounds(15, 120, 500, 200);
-		topQuadL.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-		topQuadL.setBackground(Color.WHITE);
-		ServerWindow.add(topQuadL);
-		
+ 		ServerWindow.add(totalUsers);	
 	
 		//
 		// Bottom Quadrant Left - Messages
@@ -215,22 +205,12 @@ public class ServerWindow {
 		bottomQuadR.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		bottomQuadR.setBackground(Color.WHITE);
 		ServerWindow.add(bottomQuadR);
-
-		//
-		// BOTTOM - available text area
-		//
-		bottom = new JTextArea();
-		bottom.setEditable(false);
-		bottom.setBounds(15, 550, 1015, 35);
-		bottom.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-		bottom.setBackground(Color.WHITE);
-		ServerWindow.add(bottom);
 		
 		//
 		// define all BUTTONS
 		//
 		JButton exitButton = new JButton("EXIT");
-		exitButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		exitButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		exitButton.addActionListener(new ActionListener()
 		{
 			@Override
@@ -247,7 +227,7 @@ public class ServerWindow {
 				}		
 			}
 		});
-		exitButton.setBounds(4, 620, 133, 30);;
+		exitButton.setBounds(4, 580, 200, 50);;
 		ServerWindow.add(exitButton);
 		bottomQuadL.append("Server started on: " + Server.ip + ":" + Server.port + "\n");
 		bottomQuadR.append("Real Time Bookings\n");
