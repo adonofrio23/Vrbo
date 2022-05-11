@@ -58,7 +58,7 @@ public class ServerWindow {
 		JButton listings = new JButton("Total Listings Per Month");
 		listings.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		listings.setForeground(Color.decode("#0e214b"));
-		listings.setBounds(115, 200, 300, 50);
+		listings.setBounds(115, 150, 300, 50);
 		Border emptyBorder = BorderFactory.createEmptyBorder();
 		listings.setBorder(emptyBorder);
 		listings.setBorder(BorderFactory.createLineBorder(Color.decode("#0e214b")));
@@ -120,7 +120,7 @@ public class ServerWindow {
 		JButton profit = new JButton("Total Profit Per Month");
 		profit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		profit.setForeground(Color.decode("#0e214b"));
-		profit.setBounds(640, 200, 300, 50);
+		profit.setBounds(115, 250, 300, 50);
 		profit.setBorder(emptyBorder);
 		profit.setBorder(BorderFactory.createLineBorder(Color.decode("#0e214b")));
 		profit.setForeground(Color.decode("#0e214b"));
@@ -173,6 +173,14 @@ public class ServerWindow {
 					} 
 			});  
 		ServerWindow.add(profit);
+		
+		// Label for Total Users
+		int users = 0;
+		JLabel totalUsers = new JLabel("Total Users: " + users);
+		totalUsers.setFont(new Font("Tahoma", Font.PLAIN, 40));
+ 		totalUsers.setForeground(Color.decode("#0e214b"));
+ 		totalUsers.setBounds(660, 200, 300, 50);
+ 		ServerWindow.add(totalUsers);
 		
 		//
 		// Top Quadrant Left - Listings
