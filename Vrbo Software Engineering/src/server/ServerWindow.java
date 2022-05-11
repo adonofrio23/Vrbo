@@ -174,6 +174,7 @@ public class ServerWindow {
 			});  
 		ServerWindow.add(profit);
 		
+		
 		// Label for Total Users
 		int users = 0;
 		JLabel totalUsers = new JLabel("Total Users: " + users);
@@ -182,8 +183,9 @@ public class ServerWindow {
  		totalUsers.setBounds(660, 200, 300, 50);
  		ServerWindow.add(totalUsers);
 		
+		
 		//
-		// Top Quadrant Left - Listings
+		// Top Quadrant Left - Total Listings and Total Profit Bar Graphs
 		//
 		topQuadL = new JTextArea();
 		topQuadL.setEditable(false);
@@ -192,17 +194,7 @@ public class ServerWindow {
 		topQuadL.setBackground(Color.WHITE);
 		ServerWindow.add(topQuadL);
 		
-		//
-		// Top Quadrant Right - Profit
-		//
-		topQuadR = new JTextArea();
-		topQuadR.setEditable(false);
-		topQuadR.setBounds(530, 120, 500, 200);
-		topQuadR.setBorder(new EtchedBorder(EtchedBorder.RAISED));
-		topQuadR.setBackground(Color.WHITE);
-		ServerWindow.add(topQuadR);
 	
-		
 		//
 		// Bottom Quadrant Left - Messages
 		//
@@ -215,7 +207,7 @@ public class ServerWindow {
 		
 		
 		//
-		//Bottom Quadrant Right - Users
+		//Bottom Quadrant Right - Real Time Bookings
 		//
 		bottomQuadR = new JTextArea();
 		bottomQuadR.setEditable(false);
