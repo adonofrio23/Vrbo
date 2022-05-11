@@ -59,10 +59,6 @@ public class ListingsByLocation {
 		String listing1ImageURL = parse(list1Data, "link");
 		String listing2ImageURL = parse(list2Data, "link");
 		String listing3ImageURL = parse(list3Data, "link");
-		System.out.println(listing1ImageURL);
-		System.out.println(listing2ImageURL);
-		System.out.println(listing3ImageURL);
-		
 		
 		String bed1 = parse(list1Data, "beds");
 		String bath1 = parse(list1Data, "baths");

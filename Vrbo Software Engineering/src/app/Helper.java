@@ -63,7 +63,7 @@ public class Helper {
 			jfc.setMultiSelectionEnabled(false);
 			jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			jfc.setAcceptAllFileFilterUsed(false);
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, GIF, JPEG, JPG", "png", "gif", "jpeg", "jpg");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, GIF, JPEG, JPG", "png", "gif", "jpeg", "jpg", "webp");
 			jfc.addChoosableFileFilter(filter);
 
 			int returnValue = jfc.showOpenDialog(null);

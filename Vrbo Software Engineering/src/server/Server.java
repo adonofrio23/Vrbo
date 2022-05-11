@@ -202,8 +202,7 @@ public class Server implements Runnable {
 					
 					if (message.startsWith("FETCHALL=")) {
 						String location = parse("city", message);
-						String beds = parse("beds", message);
-						GetListings.getListing(location, beds);
+						GetListings.getListing(location);
 					}
 					
 				}
