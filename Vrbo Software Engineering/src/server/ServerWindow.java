@@ -56,12 +56,12 @@ public class ServerWindow {
 		top.setBackground(Color.WHITE);
 		ServerWindow.add(top);
 		
-		// Instantiating Profit Bar Chart
+		// Instantiating Total Listings Bar Chart
 		
 		JButton listings = new JButton("Total Listings Per Month");
 		listings.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		listings.setForeground(Color.decode("#0e214b"));
-		listings.setBounds(125, 200, 300, 50);
+		listings.setBounds(115, 200, 300, 50);
 		Border emptyBorder = BorderFactory.createEmptyBorder();
 		listings.setBorder(emptyBorder);
 		listings.setBorder(BorderFactory.createLineBorder(Color.decode("#0e214b")));
@@ -118,6 +118,64 @@ public class ServerWindow {
 				} 
 		});  
 		ServerWindow.add(listings); 
+		
+		// Instantiating Total Listings Bar Chart
+		JButton profit = new JButton("Total Profit Per Month");
+		profit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		profit.setForeground(Color.decode("#0e214b"));
+		profit.setBounds(640, 200, 300, 50);
+		profit.setBorder(emptyBorder);
+		profit.setBorder(BorderFactory.createLineBorder(Color.decode("#0e214b")));
+		profit.setForeground(Color.decode("#0e214b"));
+		
+		profit.addMouseListener(new MouseAdapter() {
+			Color color = profit.getForeground();
+			public void mouseEntered(MouseEvent me) {
+				color = profit.getForeground();
+				profit.setForeground(Color.GRAY); // change the color to green when mouse over a button
+				profit.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+				}
+			public void mouseExited(MouseEvent me) {
+				profit.setForeground(color);
+				profit.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+				}
+			});
+		
+		profit.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				JFrame frame = new JFrame();
+				frame.setSize(1050, 1000);
+				int[] value = new int[5];
+				String[] months = new String[5];
+				
+				value[0] = 9;
+				months[0] = ("January: $" + value[0]*1000);
+						
+				value[1] = 4;
+				months[1] = ("February: $" + value[1]*1000);
+						
+				value[2] = 5;
+				months[2] = ("March: $" + value[2]*1000);
+						
+				value[3] = 8;
+				months[3] = ("April: $" + value[3]*1000);
+						
+				// Add profit dynamically to May?
+				value[4] = 7;
+				months[4] = ("May: $" + value[4]*1000);
+						  
+				frame.getContentPane().add(new BarChart(value, months, "Total Profit Per Month for 2022"));
+						
+						
+				WindowListener winListener = new WindowAdapter() {
+					public void windowClosing(WindowEvent event) {
+
+					}}; 
+					frame.addWindowListener(winListener);
+					frame.setVisible(true);
+					} 
+			});  
+		ServerWindow.add(profit);
 		
 		//
 		// Top Quadrant Left - Listings
