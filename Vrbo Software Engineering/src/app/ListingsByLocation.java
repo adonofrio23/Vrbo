@@ -134,7 +134,7 @@ public class ListingsByLocation {
 				
 	}
 	
-	private static String[] splitData(String input) {
+	public static String[] splitData(String input) {
 		String[] data = new String[3];
 		int cur = 0;
 		for (int i = 0, j = 0; i < input.length(); i++) {

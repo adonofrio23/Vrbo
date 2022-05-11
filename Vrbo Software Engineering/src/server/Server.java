@@ -2,6 +2,7 @@ package server;
 
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.net.BindException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -150,6 +151,7 @@ public class Server implements Runnable {
 			numLines = numLines + 2;
 			
 			BufferedReader rstream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			DataInputStream dIn = new DataInputStream(socket.getInputStream());
 			
 			while (!sessionDone) {
 				if (rstream.ready()) {
@@ -195,6 +197,14 @@ public class Server implements Runnable {
 						String price = parse("price", message);
 						String city = parse("city", message);
 						String picture = parse("picture", message);
+						/*int len = dIn.readInt();
+						byte[] pic = null;
+						if(len > 0) {
+							System.out.println("Hi");
+						    pic = new byte[len];
+						    dIn.readNBytes(pic, 0, pic.length);
+						    System.out.println("Hi 2");
+						}*/
 						byte[] pic = Base64.getDecoder().decode(picture);
 						
 						ListProperty.list(address, beds, baths, amenities, description, price, city, pic);
