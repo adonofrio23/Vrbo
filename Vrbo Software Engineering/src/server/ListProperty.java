@@ -40,7 +40,7 @@ public class ListProperty {
 		
 		ApiFuture<WriteResult> resp = Firebase.db.collection("rentals")
 				.document(city)
-				.collection(beds)
+				.collection(city)
 				.document(address)
 				.set(data, SetOptions.merge());
 		ApiFutures.addCallback(resp, new ApiFutureCallback<WriteResult>() {

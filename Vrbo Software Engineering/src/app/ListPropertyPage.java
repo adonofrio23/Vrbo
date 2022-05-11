@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Base64;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -92,6 +91,8 @@ public class ListPropertyPage {
 															+ "\", \"price\": " + price
 															+ "\", \"city\": " + city
 															+ "\", \"picture\": " + Base64.getEncoder().encodeToString(picture));
+				
+				//SocketUtils.sendFile(picture);
 				String validation = SocketUtils.receiveMessage();
 				
 				if (validation.equals("FAILED")) {

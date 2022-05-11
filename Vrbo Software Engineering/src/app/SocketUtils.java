@@ -81,4 +81,16 @@ public class SocketUtils {
     	
     	return message;
     }
+    
+    /*public static boolean sendFile(byte[] message) {
+    	try {
+			outToServer.writeInt(message.length);
+			outToServer.write(message);
+			return true;
+		} catch (IOException e) {
+			System.out.println("[Error] - " + e.getMessage());
+    		return false;
+		}
+    }*/
+    
 }

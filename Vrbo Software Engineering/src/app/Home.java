@@ -133,70 +133,73 @@ public class Home {
 		HomePage.add(pressSearch);
 		HomePage.add(searchBG);
 		
-JLabel popListingLabel = Helper.createLabel("New Listings", 30, 500, 390, 200, 35);
+		// To do - Once at least 3 listings per location are uploaded, add randLoc back to the query
+		String randLoc = options[(int)(System.currentTimeMillis() % options.length)];
+		SocketUtils.sendMessage("FETCHALL=\"city\": \"" + "Tampa Bay, FL" + "\"");
+		String data = SocketUtils.receiveMessage();
 		
-		JButton tampa = Helper.createButton("", 16, 90, 440, 300, 225);
-		Image tampaImage = Helper.fetchImage("https://images.unsplash.com/photo-1506126279646-a697353d3166?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", 300, 225);
-		tampa.setIcon(new ImageIcon(tampaImage));
-		tampa.addActionListener(new ActionListener() {
+		String[] listData = ListingsByLocation.splitData(data);
+		String list1Data = listData[0];
+		String list2Data = listData[1];
+		String list3Data = listData[2];
+		
+		JLabel popListingLabel = Helper.createLabel("Popular Listings In " + "Tampa Bay, FL", 20, 450, 390, 500, 35);
+		
+		JButton list1 = Helper.createButton("", 16, 90, 440, 300, 225);
+		Image list1pic = Helper.fetchImage(ListingsByLocation.parse(list1Data, "link"), 300, 225);
+		list1.setIcon(new ImageIcon(list1pic));
+		list1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-						
+				new ListingPageTemplate(list1Data, "Tampa Bay, FL");
+				ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);
 			}
 		});
 		
-		JButton denver = Helper.createButton("", 16, 440, 440, 300, 225);
-		Image denverImage = Helper.fetchImage("https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", 300, 225);
-		denver.setIcon(new ImageIcon(denverImage));
-		denver.addActionListener(new ActionListener() {
+		JButton list2 = Helper.createButton("", 16, 440, 440, 300, 225);
+		Image list2pic = Helper.fetchImage(ListingsByLocation.parse(list2Data, "link"), 300, 225);
+		list2.setIcon(new ImageIcon(list2pic));
+		list2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-					
+				new ListingPageTemplate(list2Data, "Tampa Bay, FL");
+				ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);
 			}
 		});
 		
-		JButton sanDiego = Helper.createButton("", 16, 790, 440, 300, 225);
-		Image sanDiegoImage = Helper.fetchImage("https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fGx1eHVyeSUyMGFwYXJ0bWVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60", 300, 225);
-		sanDiego.setIcon(new ImageIcon(sanDiegoImage));
-		sanDiego.addActionListener(new ActionListener() {
+		JButton list3 = Helper.createButton("", 16, 790, 440, 300, 225);
+		Image list3pic = Helper.fetchImage(ListingsByLocation.parse(list3Data, "link"), 300, 225);
+		list3.setIcon(new ImageIcon(list3pic));
+		list3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				
+				new ListingPageTemplate(list3Data, "Tampa Bay, FL");
+				ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);
 			}
 		});
 		
-		sanDiego.addActionListener(new ActionListener() {
-			@Override public void actionPerformed(ActionEvent e) {
-				if (ViewManager.Pages.containsKey("Listing")) {
-					ViewManager.switchPage("Listing", ViewManager.Pages.get("Listing"));
-				} else {
-					
-				}
-			}
-		});
-		
-		JLabel tampaLocationLabel = Helper.createLabel("Tampa Bay, FL", 16, 90, 640, 300, 100);
-		JLabel tampaBedBathLabel = Helper.createLabel("4 Bed, 3.5 Bath", 14, 90, 660, 300, 100);
-		JLabel tampaPriceLabel = Helper.createLabel("$499/night", 14, 90, 680, 300, 100);
-		JLabel denverLocationLabel = Helper.createLabel("Denver, Colorado", 16, 440, 640, 300, 100);
-		JLabel denverBedBathLabel = Helper.createLabel("7 Bed, 8.5 Bath", 14, 440, 660, 300, 100);
-		JLabel denverPriceLabel = Helper.createLabel("$999/night", 14, 440, 680, 300, 100);
-		JLabel sanDiegoLocationLabel = Helper.createLabel("San Diego, CA", 16, 790, 640, 300, 100);
-		JLabel sanDiegoBedBathLabel = Helper.createLabel("3 Bed, 2.5 Bath", 14, 790, 660, 300, 100);
-		JLabel sanDiegoPriceLabel = Helper.createLabel("$350/night", 14, 790, 680, 300, 100);
+		JLabel list1loc = Helper.createLabel(ListingsByLocation.parse(list1Data, "address"), 16, 90, 640, 300, 100);
+		JLabel list1bedbath = Helper.createLabel(ListingsByLocation.parse(list1Data, "beds") + ", " + ListingsByLocation.parse(list1Data, "baths"), 14, 90, 660, 300, 100);
+		JLabel list1price = Helper.createLabel("$" + ListingsByLocation.parse(list1Data, "price"), 14, 90, 680, 300, 100);
+		JLabel list2loc = Helper.createLabel(ListingsByLocation.parse(list2Data, "address"), 16, 440, 640, 300, 100);
+		JLabel list2bedbath = Helper.createLabel(ListingsByLocation.parse(list2Data, "beds") + ", " + ListingsByLocation.parse(list2Data, "baths"), 14, 440, 660, 300, 100);
+		JLabel list2price = Helper.createLabel("$" + ListingsByLocation.parse(list2Data, "price"), 14, 440, 680, 300, 100);
+		JLabel list3loc = Helper.createLabel(ListingsByLocation.parse(list3Data, "address"), 16, 790, 640, 300, 100);
+		JLabel list3bedbath = Helper.createLabel(ListingsByLocation.parse(list3Data, "beds") + ", " + ListingsByLocation.parse(list3Data, "baths"), 14, 790, 660, 300, 100);
+		JLabel list3price = Helper.createLabel("$" + ListingsByLocation.parse(list3Data, "price"), 14, 790, 680, 300, 100);
 		
 		HomePage.add(popListingLabel);
-		HomePage.add(tampa);
-		HomePage.add(denver);
-		HomePage.add(sanDiego);
-		HomePage.add(tampaLocationLabel);
-		HomePage.add(tampaBedBathLabel);
-		HomePage.add(tampaPriceLabel);
-		HomePage.add(denverLocationLabel);
-		HomePage.add(denverBedBathLabel);
-		HomePage.add(denverPriceLabel);
-		HomePage.add(sanDiegoLocationLabel);
-		HomePage.add(sanDiegoBedBathLabel);
-		HomePage.add(sanDiegoPriceLabel);
+		HomePage.add(list1);
+		HomePage.add(list1loc);
+		HomePage.add(list1bedbath);
+		HomePage.add(list1price);
+		HomePage.add(list2);
+		HomePage.add(list2loc);
+		HomePage.add(list2bedbath);
+		HomePage.add(list2price);
+		HomePage.add(list3);
+		HomePage.add(list3loc);
+		HomePage.add(list3bedbath);
+		HomePage.add(list3price);
 	}
 }

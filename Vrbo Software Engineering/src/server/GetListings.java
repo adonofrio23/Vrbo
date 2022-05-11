@@ -11,8 +11,8 @@ import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 
 public class GetListings {
-	public static void getListing(String location, String beds) {
-		ApiFuture<QuerySnapshot> doc = Firebase.db.collection("rentals").document(location).collection(beds).get();
+	public static void getListing(String location) {
+		ApiFuture<QuerySnapshot> doc = Firebase.db.collection("rentals").document(location).collection(location).get();
 		ApiFutures.addCallback(doc, new ApiFutureCallback<QuerySnapshot>() {
 			@Override
 		    public void onSuccess(QuerySnapshot result) {
