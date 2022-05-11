@@ -50,17 +50,7 @@ private static String location;
 		ListingPage.add(logo);
 	}
 	
-	private void createBody() {
-		String locationImageURL = "";
-		
-
-		String addressSt = ""; //pull
-		String bedSt = ""; //pull
-		String bathsSt = ""; //pull
-		String priceSt = ""; //pull
-		String textSt = ""; //pull
-		
-		
+	private void createBody() {		
 		JLabel locationLabel = Helper.createLabel(ListingPageTemplate.location, 36, 100, 180, 400, 50);
 		
 		JLabel locationPic = Helper.createLabel("", 20, 100, 250, 450, 350);
@@ -86,10 +76,8 @@ private static String location;
 		book.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
 				
-			String location = ""; //pull
-				SocketUtils.sendBookMessage("BOOKING=\"New Booking in\": \"" + location);
-
-				String validation = SocketUtils.receiveMessage();
+			SocketUtils.sendBookMessage("BOOKING=\"location\":" + "\"" + location + "\"");
+			String validation = SocketUtils.receiveMessage();
 				
 				if (validation.equals("INVALID")) {
 					String[] options = {"OK"};
@@ -105,15 +93,24 @@ private static String location;
 		                    options,
 		                    options[0]
 		 			);
-				} else if (validation.equals("VALID")) {
+				} else if (validation.equals("BOOKED")) {
+					String[] options = {"OK"};
+					int res = JOptionPane.showOptionDialog(
+		 					null, 
 
-					SocketUtils.sendMessage("Booking Successfully Made");
+		 					"Vacation Booked Successfully!", // Exit message
 
-				} else if (validation.equals("ERROR")) {
-					Window.frame.dispose();
-				} else {
-					System.out.println("Invalid Command");
-					Window.frame.dispose();
+		 					"VRBO Client",  // Pop-Up Window title
+		 					JOptionPane.PLAIN_MESSAGE,
+		                    JOptionPane.QUESTION_MESSAGE,
+		                    null,
+		                    options,
+		                    options[0]
+		 			);
+					
+					if (res == JOptionPane.YES_OPTION) {
+						ViewManager.switchPage("Home", Home.HomePage);
+					}
 				}
 			} 
 
