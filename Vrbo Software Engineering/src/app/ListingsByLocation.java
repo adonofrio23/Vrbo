@@ -109,13 +109,13 @@ public class ListingsByLocation {
 		
 		
 		JLabel rental1location = Helper.createLabel(loc, 16, 90, 540, 300, 100);
-		JLabel rental1bedbath = Helper.createLabel(bed1+ " " + bath1, 14, 90, 560, 300, 100);
+		JLabel rental1bedbath = Helper.createLabel(bed1+ " beds, " + bath1 + " baths", 14, 90, 560, 300, 100);
 		JLabel rental1price = Helper.createLabel(price1, 14, 90, 580, 300, 100);
 		JLabel rental2location = Helper.createLabel(loc, 16, 440, 540, 300, 100);
-		JLabel rental2bedbath = Helper.createLabel(bed2+ " " + bath2, 14, 440, 560, 300, 100);
+		JLabel rental2bedbath = Helper.createLabel(bed2+ " beds, " + bath2 + " baths", 14, 440, 560, 300, 100);
 		JLabel rental2price = Helper.createLabel(price2, 14, 440, 580, 300, 100);
 		JLabel rental3location = Helper.createLabel(loc, 16, 790, 540, 300, 100);
-		JLabel rental3bedbath = Helper.createLabel(bed3+ " " + bath3, 14, 790, 560, 300, 100);
+		JLabel rental3bedbath = Helper.createLabel(bed3+ " beds, " + bath3 + " baths", 14, 790, 560, 300, 100);
 		JLabel rental3price = Helper.createLabel(price3, 14, 790, 580, 300, 100);
 		
 		ListingsByLocation.add(rental1);
