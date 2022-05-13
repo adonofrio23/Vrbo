@@ -11,7 +11,7 @@ public class SocketUtils {
 	static Socket clientSocket = null;
     static DataOutputStream outToServer = null;
     static BufferedReader inFromServer = null;
-    static final String ip = "192.168.1.178";
+    static final String ip = "10.88.9.167";
 	static final int port = 4545;
 	static boolean socketConnected = false;
     
@@ -64,6 +64,8 @@ public class SocketUtils {
     		return true;
     	} catch (IOException e) {
     		System.out.println("[Error] - " + e.getMessage());
+    		Connect();
+    		sendBookMessage(b);
     		return false;
     	}
     }
@@ -77,6 +79,12 @@ public class SocketUtils {
     		message = inFromServer.readLine();
     	} catch (IOException e) {
     		System.out.println("[Error] - " + e.getMessage());
+    		Connect();
+    		try {
+				message = inFromServer.readLine();
+			} catch (IOException e1) {
+				System.out.println("[Error] - " + e1.getMessage());
+			}
     	}
     	
     	return message;
