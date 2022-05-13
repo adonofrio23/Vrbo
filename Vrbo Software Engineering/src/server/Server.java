@@ -160,8 +160,7 @@ public class Server implements Runnable {
 			
 			ServerWindow.bottomQuadL.append("Client Connected: " + socket.getInetAddress().toString().replace("/", "") + "\n");
 			_connections++;
-			ServerWindow.bottomQuadL.append("Current # of connections: " + _connections + "\n");
-			numLines = numLines + 2;
+			numLines++;
 			
 			if (numLines >= 12)
 			{
@@ -170,7 +169,6 @@ public class Server implements Runnable {
 			}
 			
 			BufferedReader rstream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			DataInputStream dIn = new DataInputStream(socket.getInputStream());
 			
 			while (!sessionDone) {
 				if (rstream.ready()) {
@@ -216,17 +214,10 @@ public class Server implements Runnable {
 						String price = parse("price", message);
 						String city = parse("city", message);
 						String picture = parse("picture", message);
-						/*int len = dIn.readInt();
-						byte[] pic = null;
-						if(len > 0) {
-							System.out.println("Hi");
-						    pic = new byte[len];
-						    dIn.readNBytes(pic, 0, pic.length);
-						    System.out.println("Hi 2");
-						}*/
 						byte[] pic = Base64.getDecoder().decode(picture);
 						
 						ListProperty.list(address, beds, baths, amenities, description, price, city, pic);
+						UpdateCount.update();
 					}
 					
 
@@ -255,7 +246,6 @@ public class Server implements Runnable {
 			
 			_connections--;
 			socket.close();
-			ServerWindow.bottomQuadL.append("Current # of connections: " + _connections + "\n");
 			return;
 		} catch (SocketException e) {
 			System.out.println("[Server] - " + e.getMessage());

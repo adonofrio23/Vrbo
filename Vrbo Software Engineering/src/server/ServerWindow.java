@@ -32,12 +32,30 @@ public class ServerWindow {
 	public static JTextArea bottomQuadR;
 	
 	public ServerWindow() {
+		GetListingCount.getListing();
 		ServerWindow = new JPanel(null);
 		ServerWindow.setBackground(Color.decode("#0e214b"));
 		TitledBorder border = new TitledBorder(new EtchedBorder(), "Vrbo Socket Server");
 		border.setTitleColor(Color.WHITE);
 		ServerWindow.setBorder(border);
 		
+		
+		// Label for Total Users
+		GetUsers.getUsers();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		String users = "N/A";
+		if (GetUsers.num != null && GetUsers.num != "0") {
+			users = GetUsers.num;
+		}
+		JLabel totalUsers = new JLabel("Total Users: " + users);
+		totalUsers.setFont(new Font("Tahoma", Font.PLAIN, 40));
+ 		totalUsers.setForeground(Color.WHITE);
+ 		totalUsers.setBounds(660, 200, 500, 50);
+ 		ServerWindow.add(totalUsers);
 		//
 		// TOP - available text area - has the real-time clock display for now
 		//
@@ -71,6 +89,7 @@ public class ServerWindow {
 			@Override public void actionPerformed(ActionEvent e) {
 				JFrame frame = new JFrame();
 				frame.setSize(1050, 1000);
+				frame.setLocationRelativeTo(null);
 				int[] value = new int[5];
 				String[] months = new String[5];
 				
@@ -87,9 +106,10 @@ public class ServerWindow {
 				months[3] = ("April: " + value[3]*100);
 				
 				// Add number of listings dynamically to May
-				value[4] = 0;
-				months[4] = ("May: " + value[4]*100);
-				  
+				value[4] = GetListingCount.getNum();
+				months[4] = ("May: " + value[4]);
+				 
+				
 				frame.getContentPane().add(new BarChart(value, months, "Total Listings Per Month for 2022"));
 				
 				
@@ -133,6 +153,7 @@ public class ServerWindow {
 			@Override public void actionPerformed(ActionEvent e) {
 				JFrame frame = new JFrame();
 				frame.setSize(1050, 1000);
+				frame.setLocationRelativeTo(null);
 				int[] value = new int[5];
 				String[] months = new String[5];
 				
@@ -153,7 +174,7 @@ public class ServerWindow {
 				months[4] = ("May: $" + value[4]*1000);
 						  
 				frame.getContentPane().add(new BarChart(value, months, "Total Profit Per Month for 2022"));
-						
+				
 						
 				WindowListener winListener = new WindowAdapter() {
 					public void windowClosing(WindowEvent event) {
@@ -163,16 +184,7 @@ public class ServerWindow {
 					frame.setVisible(true);
 					} 
 			});  
-		ServerWindow.add(profit);
-		
-		
-		// Label for Total Users
-		int users = 0;
-		JLabel totalUsers = new JLabel("Total Users: " + users);
-		totalUsers.setFont(new Font("Tahoma", Font.PLAIN, 40));
- 		totalUsers.setForeground(Color.WHITE);
- 		totalUsers.setBounds(660, 200, 300, 50);
- 		ServerWindow.add(totalUsers);	
+		ServerWindow.add(profit);	
 	
 		//
 		// Bottom Quadrant Left - Messages

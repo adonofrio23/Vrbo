@@ -84,15 +84,14 @@ public class ListPropertyPage {
 				String price = priceField.getText();
 				String city = search.getSelectedItem().toString();
 				
-				SocketUtils.sendMessage("LIST=\"address\": " + address + "\", \"beds\": " + beds 
-															+ "\", \"baths\": " + baths
-															+ "\", \"amenities\": " + amenities
-															+ "\", \"description\": " + description
-															+ "\", \"price\": " + price
-															+ "\", \"city\": " + city
-															+ "\", \"picture\": " + Base64.getEncoder().encodeToString(picture));
+				SocketUtils.sendMessage("LIST=\"address\": \"" + address + "\", \"beds\": \"" + beds 
+															+ "\", \"baths\": \"" + baths
+															+ "\", \"amenities\": \"" + amenities
+															+ "\", \"description\": \"" + description
+															+ "\", \"price\": \"" + price
+															+ "\", \"city\": \"" + city
+															+ "\", \"picture\": \"" + Base64.getEncoder().encodeToString(picture) + "\"");
 				
-				//SocketUtils.sendFile(picture);
 				String validation = SocketUtils.receiveMessage();
 				
 				if (validation.equals("FAILED")) {
