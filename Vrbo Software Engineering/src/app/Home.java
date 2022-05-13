@@ -135,7 +135,7 @@ public class Home {
 		
 		// To do - Once at least 3 listings per location are uploaded, add randLoc back to the query
 		String randLoc = options[(int)(System.currentTimeMillis() % options.length)];
-		SocketUtils.sendMessage("FETCHALL=\"city\": \"" + "Tampa Bay, FL" + "\"");
+		SocketUtils.sendMessage("FETCHALL=\"city\": \"" + randLoc + "\"");
 		String data = SocketUtils.receiveMessage();
 		
 		String[] listData = ListingsByLocation.splitData(data);
@@ -143,7 +143,7 @@ public class Home {
 		String list2Data = listData[1];
 		String list3Data = listData[2];
 		
-		JLabel popListingLabel = Helper.createLabel("Popular Listings In " + "Tampa Bay, FL", 20, 450, 390, 500, 35);
+		JLabel popListingLabel = Helper.createLabel("Popular Listings In " + randLoc, 20, 450, 390, 500, 35);
 		
 		JButton list1 = Helper.createButton("", 16, 90, 440, 300, 225);
 		Image list1pic = Helper.fetchImage(ListingsByLocation.parse(list1Data, "link"), 300, 225);
@@ -151,7 +151,7 @@ public class Home {
 		list1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				new ListingPageTemplate(list1Data, "Tampa Bay, FL");
+				new ListingPageTemplate(list1Data, randLoc);
 				ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);
 			}
 		});
@@ -162,7 +162,7 @@ public class Home {
 		list2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				new ListingPageTemplate(list2Data, "Tampa Bay, FL");
+				new ListingPageTemplate(list2Data, randLoc);
 				ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);
 			}
 		});
@@ -173,13 +173,13 @@ public class Home {
 		list3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				new ListingPageTemplate(list3Data, "Tampa Bay, FL");
+				new ListingPageTemplate(list3Data, randLoc);
 				ViewManager.switchPage("Listing", ListingPageTemplate.ListingPage);
 			}
 		});
 		
 		JLabel list1loc = Helper.createLabel(ListingsByLocation.parse(list1Data, "address"), 16, 90, 640, 300, 100);
-		JLabel list1bedbath = Helper.createLabel(ListingsByLocation.parse(list1Data, "beds") + ", " + ListingsByLocation.parse(list1Data, "baths"), 14, 90, 660, 300, 100);
+		JLabel list1bedbath = Helper.createLabel(ListingsByLocation.parse(list1Data, "beds") + " beds, " + ListingsByLocation.parse(list1Data, "baths") + " baths", 14, 90, 660, 300, 100);
 		JLabel list1price = Helper.createLabel("$" + ListingsByLocation.parse(list1Data, "price"), 14, 90, 680, 300, 100);
 		JLabel list2loc = Helper.createLabel(ListingsByLocation.parse(list2Data, "address"), 16, 440, 640, 300, 100);
 		JLabel list2bedbath = Helper.createLabel(ListingsByLocation.parse(list2Data, "beds") + " beds, " + ListingsByLocation.parse(list2Data, "baths") + " baths", 14, 440, 660, 300, 100);
